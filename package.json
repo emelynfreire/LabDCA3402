@@ -1,0 +1,25 @@
+{
+  "name": "plataforma-dca3402",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Plataforma de estudos de DCA3402 – Modelagem e Análise Linear de Sistemas (UFRN)",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@react-three/drei": "9.122.0",
+    "@react-three/fiber": "8.18.0",
+    "katex": "0.16.22",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "react-router-dom": "6.30.1",
+    "three": "0.170.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "4.3.4",
+    "vite": "5.4.21"
+  }
+}

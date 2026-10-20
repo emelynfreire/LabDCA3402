@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.DS_Store
+*.log
+.vite/
+
+# Pasta original do material. Os PDFs publicados (autorizados pelo professor)
+# ficam em public/material/; esta pasta é ignorada só para não duplicar arquivos
+# e para não publicar "unidades atuais.pdf" (tem o link do grupo de WhatsApp).
+Material/
