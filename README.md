@@ -45,7 +45,7 @@ Para gerar a versão final: `npm run build` (o resultado fica em `dist/`).
    git remote add origin https://github.com/SEU-USUARIO/PlataformaDCA3402.git
    git push -u origin main
    ```
-   Antes do primeiro push, crie a pasta `.github/workflows/` e mova para dentro dela o arquivo `deploy.yml` que está na raiz do projeto (ele precisa ficar em `.github/workflows/deploy.yml`).
+   O workflow já está no caminho correto: `.github/workflows/deploy.yml`.
 2. No repositório: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
 3. O workflow `.github/workflows/deploy.yml` compila e publica a cada `push` na `main`. Em 1–2 minutos o site fica em `https://SEU-USUARIO.github.io/PlataformaDCA3402/`.
 
