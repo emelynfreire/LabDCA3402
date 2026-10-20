@@ -34,22 +34,41 @@ Abra o endereço mostrado no terminal (normalmente http://localhost:5173).
 
 Para gerar a versão final: `npm run build` (o resultado fica em `dist/`).
 
-## Publicar no GitHub Pages
+## Como contribuir
 
-1. Crie um repositório no GitHub (por exemplo, `PlataformaDCA3402`) e envie o projeto:
+Contribuições são bem-vindas! Para propor uma alteração:
+
+1. Faça um fork do repositório e clone-o localmente:
    ```bash
-   git init
-   git add .
-   git commit -m "Plataforma DCA3402"
-   git branch -M main
-   git remote add origin https://github.com/SEU-USUARIO/PlataformaDCA3402.git
-   git push -u origin main
+   git clone https://github.com/emelynfreire/LabDCA3402.git
+   cd LabDCA3402
    ```
-   O workflow já está no caminho correto: `.github/workflows/deploy.yml`.
-2. No repositório: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
-3. O workflow `.github/workflows/deploy.yml` compila e publica a cada `push` na `main`. Em 1–2 minutos o site fica em `https://SEU-USUARIO.github.io/PlataformaDCA3402/`.
+2. Crie uma branch para sua alteração:
+   ```bash
+   git checkout -b minha-alteracao
+   ```
+3. Instale as dependências e execute a plataforma localmente:
+   ```bash
+   npm install
+   npm run dev
+   ```
+   Ou execute com Docker:
+   ```bash
+   docker compose up --build
+   ```
+4. Faça as alterações, valide a compilação e confira o resultado:
+   ```bash
+   npm run build
+   ```
+5. Registre e envie suas alterações:
+   ```bash
+   git add .
+   git commit -m "Descreva a alteração"
+   git push origin minha-alteracao
+   ```
+6. Abra um **Pull Request** para a branch `main`, descrevendo o que foi alterado e como a mudança foi validada.
 
-O projeto usa `base: './'` e rotas com `#`, então funciona com qualquer nome de repositório.
+Ao contribuir com novos tópicos, exercícios ou simulações, siga também as orientações da seção [Como adicionar conteúdo](#como-adicionar-conteudo).
 
 > **Material do professor:** os PDFs publicados ficam em `public/material/` (com nomes curtos, usados nos links de página). A pasta `Material/` original continua no `.gitignore` só para não duplicar os arquivos no repositório; o arquivo `unidades atuais.pdf` (página do SIGAA com o link do grupo de WhatsApp) não é publicado.
 
