@@ -72,7 +72,7 @@ export default function Layout({ children }) {
       <aside className={'sidebar' + (open ? ' open' : '')}>
         <Nav />
         <ThemeSwitch />
-        <p className="sidebar-credit">Dev: <a href={course.autoraGithub} target="_blank" rel="noreferrer">{course.autora}</a> · <a href={course.repo} target="_blank" rel="noreferrer">contribua no GitHub</a></p>
+        <p className="sidebar-credit">Dev: <a href={course.autoraGithub} target="_blank" rel="noreferrer">Emelyn</a> · <a href={course.repo} target="_blank" rel="noreferrer">contribua no GitHub</a></p>
       </aside>
       <main className="main" id="conteudo">{children}</main>
     </div>
