@@ -2,7 +2,6 @@
 export const course = {
   code: 'DCA3402',
   name: 'Modelagem e Análise Linear de Sistemas',
-  turma: 'T02 · 2026.2',
   professor: 'Prof. Anderson Luiz de Oliveira Cavalcanti',
   dept: 'Departamento de Engenharia de Computação e Automação (DCA) · UFRN',
   autora: 'Emelyn Clementino Freire',
