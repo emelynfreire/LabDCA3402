@@ -20,8 +20,7 @@ export default function Home() {
     <div className="page wide">
       <section className="hero">
         <div>
-          <p className="ui muted" style={{ margin: 0 }}>{course.code} · {course.turma} · UFRN</p>
-          <h1>Modelagem e Análise Linear de Sistemas</h1>
+          <h1>Plataforma de estudos de Modelagem e Análise Linear de Sistemas</h1>
           <p className="lead">Teoria resumida a partir dos slides da disciplina, simulações em 3D que você pode manipular, as listas resolvidas passo a passo e um quiz por unidade.</p>
           <div className="btn-row">
             <Link className="btn primary" to="/topico/introducao">Começar pela Unidade 1</Link>
