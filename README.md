@@ -40,24 +40,57 @@ Abra o endereço mostrado no terminal (normalmente http://localhost:5173).
 
 Para gerar a versão final: `npm run build` (o resultado fica em `dist/`).
 
-## Publicar no GitHub Pages
+## Como contribuir
 
-1. Envie o projeto para o repositório [`emelynfreire/LabDCA3402`](https://github.com/emelynfreire/LabDCA3402):
+Contribuições são bem-vindas! Você pode ajudar a melhorar o projeto reportando problemas, sugerindo funcionalidades ou implementando melhorias.
+
+- **Encontrou um erro?** Abra uma [issue](https://github.com/emelynfreire/LabDCA3402/issues) dizendo a página, o que está errado e, se possível, a página do slide ou da lista.
+- **Tem uma ideia** de simulação, exercício ou revisão? Abra uma issue descrevendo a ideia.
+- **Quer mexer no código?** Faça um *fork*, crie as alterações (veja "Como adicionar conteúdo") e envie um *pull request*.
+
+### Regras para contribuir
+
+1. **Explore o projeto:** consulte o código e a documentação antes de propor alterações.
+2. **Identifique uma tarefa:** verifique as *Issues* existentes ou abra uma nova para discutir sua ideia antes de começar.
+3. **Crie uma branch:** não faça alterações diretamente na branch `main`. Utilize uma branch com um nome descritivo.
+
    ```bash
-   git init
-   git add .
-   git commit -m "Plataforma DCA3402"
-   git branch -M main
-   git remote add origin https://github.com/emelynfreire/LabDCA3402.git
-   git push -u origin main
+   git checkout main
+   git pull origin main
+   git checkout -b feature/nova-funcionalidade
    ```
-   Antes do primeiro push, crie a pasta `.github/workflows/` e mova para dentro dela o arquivo `deploy.yml` que está na raiz do projeto (ele precisa ficar em `.github/workflows/deploy.yml`).
-2. No repositório: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
-3. O workflow `.github/workflows/deploy.yml` compila e publica a cada `push` na `main`. Em 1–2 minutos o site fica em https://emelynfreire.github.io/LabDCA3402/.
+
+4. **Siga o padrão do projeto:** mantenha a organização dos arquivos, o estilo do código e a compatibilidade com as funcionalidades existentes.
+5. **Teste suas alterações:** verifique se o projeto continua funcionando corretamente antes de enviar sua contribuição.
+6. **Faça commits descritivos:** utilize mensagens claras que indiquem o que foi alterado.
+
+   ```bash
+   git add .
+   git commit -m "feat: adiciona nova funcionalidade"
+   ```
+
+7. **Envie sua branch para o GitHub:**
+
+   ```bash
+   git push origin feature/nova-funcionalidade
+   ```
+
+8. **Abra um Pull Request (PR):** descreva as alterações realizadas, sua finalidade e, se necessário, inclua capturas de tela. Aguarde a revisão antes de integrar as mudanças à branch `main`.
+
+### Diretrizes gerais
+
+- Mantenha o código legível, organizado e documentado quando necessário.
+- Evite alterações que não estejam relacionadas à proposta do Pull Request.
+- Não envie senhas, tokens, chaves de API ou outros dados sensíveis.
+- Respeite os direitos autorais e as licenças dos materiais utilizados.
+- Seja respeitoso e colaborativo nas discussões e revisões.
+
+Todas as contribuições estarão sujeitas à revisão e poderão ser solicitadas alterações antes da aprovação.
+
 
 O projeto usa `base: './'` e rotas com `#`, então funciona com qualquer nome de repositório.
 
-> **Material do professor:** os PDFs publicados ficam em `public/material/` (com nomes curtos, usados nos links de página). A pasta `Material/` original continua no `.gitignore` só para não duplicar os arquivos no repositório; o arquivo `unidades atuais.pdf` (página do SIGAA com o link do grupo de WhatsApp) não é publicado.
+> **Material do professor:** os PDFs publicados ficam em `public/material/` (com nomes curtos, usados nos links de página). 
 
 ## Estrutura
 
@@ -86,12 +119,6 @@ CITATION.cff      dados de citação lidos pelo GitHub
 - **Citar uma página dos slides:** `<Slide p={12} />` (PDF da aula atual) ou `<Slide file="lista-1.pdf" p={3} />`. Quando chegarem os slides da Unidade 3, copie os PDFs para `public/material/` e preencha `pdf` e `pages` no tópico em `course.js`.
 
 Fórmulas usam KaTeX: `<M>{String.raw\`G(s)=\frac{1}{s+1}\`}</M>` (inline) e `<MM>…</MM>` (destaque).
-
-## Como contribuir
-
-- **Encontrou um erro?** Abra uma [issue](https://github.com/emelynfreire/LabDCA3402/issues) dizendo a página, o que está errado e, se possível, a página do slide ou da lista.
-- **Tem uma ideia** de simulação, exercício ou revisão? Abra uma issue descrevendo a ideia.
-- **Quer mexer no código?** Faça um *fork*, crie as alterações (veja "Como adicionar conteúdo") e envie um *pull request*.
 
 ## Como citar
 
