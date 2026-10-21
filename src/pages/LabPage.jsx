@@ -1,6 +1,7 @@
 import { Link, useSearchParams } from 'react-router-dom'
 import { SIMS, SimSlot } from '../sims/registry.jsx'
 import { topicById, units } from '../content/course.js'
+import CiteBox from '../components/CiteBox.jsx'
 
 export default function LabPage() {
   const [params, setParams] = useSearchParams()
@@ -17,6 +18,11 @@ export default function LabPage() {
           <div className="btn-row"><button className="btn small ghost" onClick={() => setParams({})}>Voltar à lista</button>
             <Link className="btn small ghost" to={`/topico/${SIMS[sel].topic}`}>Ler o tópico: {topicById(SIMS[sel].topic)?.title}</Link></div>
           <SimSlot name={sel} />
+          <details className="lab-cite">
+            <summary>Como citar esta simulação</summary>
+            <CiteBox sim={{ key: sel, title: SIMS[sel].title }} />
+            <p className="small">Quando citar, como fazer a legenda de figura e outros formatos: <Link to="/citar">Como citar e contribuir</Link>.</p>
+          </details>
         </>
       )}
       {units.map((u) => {

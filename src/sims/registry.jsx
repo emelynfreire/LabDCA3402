@@ -24,6 +24,12 @@ export const SIMS = {
   estados: { C: L(() => import('./StateSpace3D.jsx')), title: 'Trajetórias no espaço de estados', desc: 'Plano de fase, autovetores e trajetórias em 3D.', topic: 'espaco-estados', d3: true },
   controlabilidade: { C: L(() => import('./ControllabilitySim.jsx'), 'Controllability'), title: 'Controlabilidade em 3D', desc: 'O subespaço que a entrada consegue alcançar.', topic: 'controlabilidade', d3: true },
   observabilidade: { C: L(() => import('./ControllabilitySim.jsx'), 'Observability'), title: 'Observabilidade', desc: 'Estados diferentes com a mesma saída.', topic: 'controlabilidade', d3: false },
+  modal: { C: L(() => import('./ModalDecomposition.jsx')), title: 'Frações parciais: cada polo é um termo', desc: 'A resposta decomposta nos modos de cada polo, sobrepostos ou em camadas 3D.', topic: 'funcao-transferencia', d3: true },
+  routhPasso: { C: L(() => import('./RouthStepByStep.jsx')), title: 'Routh célula por célula', desc: 'Cada elemento da tabela calculado com as quatro células que ele usa.', topic: 'estabilidade', d3: false },
+  complexo: { C: L(() => import('./ComplexPlane.jsx')), title: 'Plano complexo e resíduos', desc: 'Operações com complexos e o resíduo calculado pela geometria dos polos.', topic: 'laplace', d3: false, review: true },
+  bhaskara: { C: L(() => import('./QuadraticRoots.jsx')), title: 'Raízes de s² + bs + c e amortecimento', desc: 'Discriminante, Bhaskara, completar quadrado e a ligação com ξ.', topic: 'regime-transitorio', d3: false, review: true },
+  taylor: { C: L(() => import('./TaylorSim.jsx')), title: 'Série de Taylor e plano tangente', desc: 'Reta tangente em 1D e plano tangente do tanque em 3D.', topic: 'linearizacao', d3: true, review: true },
+  matriz: { C: L(() => import('./MatrixTransform.jsx')), title: 'Matriz como transformação', desc: 'Determinante como área/volume, posto e autovetores, em 2D e 3D.', topic: 'espaco-estados', d3: true, review: true },
   torcao: { C: L(() => import('./RotationalSims.jsx'), 'TorsionSim'), title: 'Sistema rotacional em 3D', desc: 'Inércia, mola torcional e atrito viscoso.', topic: 'mecanicos-rotacao', d3: true },
   motor: { C: L(() => import('./RotationalSims.jsx'), 'DCMotorSim'), title: 'Motor CC em 3D', desc: 'Acoplamento eletromecânico: corrente, torque e velocidade.', topic: 'eletromecanicos', d3: true },
 }

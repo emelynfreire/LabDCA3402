@@ -38,7 +38,7 @@ export default function MecanicosTranslacao() {
         Com essa correspondência, <M>{'m\\ddot x+b\\dot x+kx=f'}</M> e <M>{'L\\ddot q+R\\dot q+q/C=e'}</M> são a mesma equação.
       </Callout>
 
-      <Exercise id="t-u3-mt" num="Ex." topic="Modelo em espaço de estados"
+      <Exercise id="t-u3-mt" review={['matrizes']} num="Ex." topic="Modelo em espaço de estados"
         steps={[
           { title: 'Estados', body: <p><M>{'x_1=x'}</M> (posição) e <M>{'x_2=\\dot x'}</M> (velocidade), as variáveis ligadas à energia da mola e da massa.</p> },
           { title: 'Equações', body: <MM>{String.raw`\dot x_1=x_2,\qquad \dot x_2=\frac{1}{m}\left(f-kx_1-bx_2\right)`}</MM> },

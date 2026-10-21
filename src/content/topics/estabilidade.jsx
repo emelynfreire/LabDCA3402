@@ -43,6 +43,8 @@ export default function Estabilidade() {
       <RouthTable coefs={[1, 4, 3, 2, 1, 4, 4]} />
       <p>Duas trocas de sinal (de <M>{'s^2'}</M> para <M>{'s^1'}</M> e de <M>{'s^1'}</M> para <M>{'s^0'}</M>) ⇒ duas raízes no SPD ⇒ não é BIBO-estável.</p>
 
+      <p>Para ver de onde sai cada número da tabela, avance célula por célula:</p>
+      <SimSlot name="routhPasso" />
       <h3>Caso especial 1: zero na primeira coluna<Slide p={[28, 32]} /></h3>
       <p>Se o primeiro elemento de uma linha é nulo, mas os demais não, substitui-se o zero por <M>{'\\epsilon>0'}</M> arbitrariamente pequeno, prossegue-se e analisam-se os sinais no limite <M>{'\\epsilon\\to0'}</M>. Exemplo dos slides, <M>{'s^5+2s^4+2s^3+4s^2+11s+10'}</M>:</p>
       <RouthTable coefs={[1, 2, 2, 4, 11, 10]} />
@@ -55,7 +57,7 @@ export default function Estabilidade() {
       <SimSlot name="routh" />
 
       <h2>Exercícios dos slides<Slide p={38} /></h2>
-      <Exercise id="t-est-1" src={{ p: 38 }} num="1" topic="Slides, aula 10"
+      <Exercise id="t-est-1" review={['limites']} src={{ p: 38 }} num="1" topic="Slides, aula 10"
         steps={[
           { title: 'Primeiras linhas', body: <MM>{String.raw`s^5:\ 1\ \ 2\ \ 6\qquad s^4:\ 3\ \ 6\ \ 9`}</MM> },
           { title: 'Linha s³', body: <p><M>{'c_1=\\frac{3\\cdot2-1\\cdot6}{3}=0'}</M> e <M>{'c_2=\\frac{3\\cdot6-1\\cdot9}{3}=3'}</M>. Zero na 1ª coluna com o resto não nulo: caso especial 1, troca-se por <M>{'\\epsilon'}</M>.</p> },
@@ -65,7 +67,7 @@ export default function Estabilidade() {
         answer={<p>Duas raízes no SPD: o sistema é instável (raízes: −2,904; −0,705 ± j0,993; 0,657 ± j1,288).</p>}>
         <p>Verifique a estabilidade de um sistema com polinômio característico <M>{'A(s)=s^5+3s^4+2s^3+6s^2+6s+9'}</M>.</p>
       </Exercise>
-      <Exercise id="t-est-2" src={{ p: 38 }} num="2" topic="Slides, aula 10"
+      <Exercise id="t-est-2" review={['polinomios']} src={{ p: 38 }} num="2" topic="Slides, aula 10"
         steps={[
           { title: 'Tabela', body: <MM>{String.raw`\begin{array}{c|cc}s^2&a_0&a_2\\ s^1&a_1&0\\ s^0&a_2&\end{array}\qquad\left(\text{pois }\tfrac{a_1a_2-a_0\cdot0}{a_1}=a_2\right)`}</MM> },
           { title: 'Conclusão', body: <p>A 1ª coluna é <M>{'a_0,\\ a_1,\\ a_2'}</M>. Não há troca de sinal se, e somente se, os três têm o mesmo sinal.</p> },

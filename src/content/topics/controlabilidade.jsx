@@ -13,6 +13,8 @@ export default function Controlabilidade() {
       <p><b>Exemplos dos slides.</b> Dois ramos RC idênticos alimentados pela mesma fonte: se <M>{'x_1(0)=x_2(0)'}</M>, então <M>{'x_1(t)=x_2(t)'}</M> para todo <M>t</M>, qualquer que seja <M>u</M> — não controlável. Já no RLC série existe <M>u</M> capaz de alterar independentemente a corrente e a tensão — controlável. Nem sempre a análise física basta; daí os testes algébricos.</p>
       <h3>Teste do posto<Slide p={7} /></h3>
       <MM>{String.raw`\mathcal C=\begin{bmatrix}B&AB&A^2B&\cdots&A^{n-1}B\end{bmatrix}\qquad\text{controlável}\iff\posto(\mathcal C)=n`}</MM>
+      <p>Posto menor que <M>n</M> significa que as colunas de <M>{'\\mathcal C'}</M> "achatam" o espaço: veja o caso 3 × 3 de posto 2 na simulação abaixo (preset "Posto 2").</p>
+      <SimSlot name="matriz" initialDim="3" preset3={3} />
       <h3>Teste PBH (Popov–Belevitch–Hautus)<Slide p={[8, 11]} /></h3>
       <MM>{String.raw`\text{controlável}\iff\posto\begin{bmatrix}A-\lambda I&B\end{bmatrix}=n\ \ \text{para todo autovalor }\lambda\text{ de }A`}</MM>
       <p>Se o posto cai para algum <M>{'\\lambda_i'}</M>, ele é um <b>autovalor (modo) não controlável</b>.</p>
@@ -36,7 +38,7 @@ export default function Controlabilidade() {
       <SimSlot name="observabilidade" />
 
       <h2>Exercício dos slides<Slide p={20} /></h2>
-      <Exercise id="t-co-2" src={{ p: 20 }} num="2" topic="Slides, aula 13"
+      <Exercise id="t-co-2" review={['posto', 'determinante', 'autovalores']} src={{ p: 20 }} num="2" topic="Slides, aula 13"
         steps={[
           { title: 'Matriz de controlabilidade', body: <MM>{String.raw`B=\begin{bmatrix}0\\0\\1\end{bmatrix},\ AB=\begin{bmatrix}0\\1\\-6\end{bmatrix},\ A^2B=\begin{bmatrix}1\\-6\\25\end{bmatrix}\ \Rightarrow\ \mathcal C=\begin{bmatrix}0&0&1\\0&1&-6\\1&-6&25\end{bmatrix},\ \det\mathcal C=-1`}</MM> },
           { title: 'Matriz de observabilidade', body: <MM>{String.raw`C=\begin{bmatrix}1&0&0\end{bmatrix},\ CA=\begin{bmatrix}0&1&0\end{bmatrix},\ CA^2=\begin{bmatrix}0&0&1\end{bmatrix}\ \Rightarrow\ \mathcal O=I_3`}</MM> },

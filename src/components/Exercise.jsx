@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import { useProgress } from './progress.jsx'
 import Slide from './SlideRef.jsx'
+import { ReviewChips } from './Review.jsx'
 
 /**
  * Exercício com solução revelada passo a passo.
  * steps: [{ title, body }]; answer: nó React com a resposta final
  */
-export default function Exercise({ id, num, topic, children, steps = [], answer, hint, src }) {
+export default function Exercise({ id, num, topic, children, steps = [], answer, hint, src, review }) {
   const [shown, setShown] = useState(0)
   const [showHint, setShowHint] = useState(false)
   const { exercises, markExercise } = useProgress()
@@ -21,12 +22,14 @@ export default function Exercise({ id, num, topic, children, steps = [], answer,
           <div className="ex-statement">{children}</div>
         </div>
       </div>
+      {review && <ReviewChips keys={review} />}
       {shown > 0 && (
         <ol className="steps">
           {steps.slice(0, shown).map((s, i) => (
             <li key={i}>
               {s.title && <span className="step-title">{s.title}</span>}
               {s.body}
+              {s.review && <ReviewChips keys={s.review} label="Revisar:" />}
             </li>
           ))}
         </ol>

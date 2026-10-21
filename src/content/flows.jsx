@@ -1,0 +1,173 @@
+import { M, MM } from '../components/Tex.jsx'
+
+const S = (file, p, label) => ({ file, p, label })
+
+export const FLOWS = {
+  'resolver-edo': {
+    title: 'Resolver uma EDO linear com condições iniciais',
+    desc: 'Os dois caminhos da Unidade 1: método clássico (homogênea + particular) e Transformada de Laplace.',
+    topics: ['metodo-classico', 'edo-laplace'],
+    nodes: [
+      { id: 's', type: 'start', x: 0, y: 0, label: 'EDO linear, entrada u(t) e condições iniciais', detail: <p>Exemplo: <M>{'\\ddot y+5\\dot y+6y=12u,\\ u=2,\\ y(0)=1,\\ \\dot y(0)=-1'}</M>. Os dois métodos chegam ao mesmo <M>y(t)</M>.</p> },
+      { id: 'd', type: 'decision', x: 0, y: 1, label: 'Usar Laplace?', detail: <p>O método clássico é direto quando a entrada é simples (constante, exponencial, senoide). Laplace é mais sistemático: as condições iniciais entram na própria transformação e o resultado sai em um só caminho.</p> },
+      { id: 'c1', type: 'step', x: 0, y: 2, label: 'Polinômio característico A(s) e suas raízes', review: ['polinomios', 'edo-basico'], slide: S('05-metodo-classico.pdf', 12), detail: <p>Troque cada derivada por uma potência de <M>s</M> no lado esquerdo: <M>{'\\ddot y+5\\dot y+6y \\to s^2+5s+6'}</M>. As raízes (−2 e −3) vêm de Bhaskara ou da fatoração.</p> },
+      { id: 'c2', type: 'step', x: 0, y: 3, label: 'Montar yₕ com constantes livres', review: ['complexos', 'trigonometria'], slide: S('05-metodo-classico.pdf', 15), detail: <><p>Um termo por raiz:</p><ul><li>raiz simples <M>p</M>: <M>{'Ce^{pt}'}</M></li><li>raiz dupla: <M>{'D_0te^{pt}+D_1e^{pt}'}</M></li><li>par <M>{'\\alpha\\pm j\\beta'}</M>: <M>{'e^{\\alpha t}(C_1\\operatorname{sen}\\beta t+C_2\\cos\\beta t)'}</M></li></ul></> },
+      { id: 'c3', type: 'step', x: 0, y: 4, label: 'Solução particular yₚ com a forma da entrada', review: ['derivadas'], slide: S('05-metodo-classico.pdf', 19), detail: <p>Entrada constante → <M>{'y_p=\\beta'}</M>; entrada <M>{'e^{at}'}</M> → <M>{'y_p=\\beta e^{at}'}</M>. Substitua na EDO e ache <M>{'\\beta'}</M>. Se a forma da entrada já está em <M>{'y_h'}</M>, multiplique a tentativa por <M>t</M>.</p> },
+      { id: 'c4', type: 'step', x: 0, y: 5, label: 'y = yₚ + yₕ; impor y(0), ẏ(0)… e resolver o sistema', review: ['sistemas-lineares', 'derivadas'], slide: S('05-metodo-classico.pdf', 24), detail: <p>Derive <M>y(t)</M>, avalie em <M>t=0</M> e iguale às condições iniciais: sai um sistema linear com as constantes. Exemplo: <M>{'C_1+C_2=-3,\\ 2C_1+3C_2=1\\Rightarrow C_1=-10,\\ C_2=7'}</M>.</p> },
+      { id: 'l1', type: 'step', x: 1, y: 2, label: 'Transformar: sY − y(0), s²Y − s·y(0) − ẏ(0)', review: ['derivadas'], slide: S('07-solucao-edo-laplace.pdf', 4), detail: <MM>{String.raw`\mathcal L\{\dot y\}=sY-y(0),\qquad \mathcal L\{\ddot y\}=s^2Y-s\,y(0)-\dot y(0)`}</MM> },
+      { id: 'l2', type: 'step', x: 1, y: 3, label: 'Isolar Y(s) = N(s)/D(s)', review: ['polinomios'], slide: S('07-solucao-edo-laplace.pdf', 6), detail: <p>Junte os termos com <M>Y(s)</M>, passe o resto para o outro lado e coloque tudo sobre o mesmo denominador: <M>{'Y=\\frac{s^2+4s+24}{s(s+2)(s+3)}'}</M>.</p> },
+      { id: 'l3', type: 'step', x: 1, y: 4, label: 'Frações parciais (resíduos)', review: ['fracoes', 'complexos'], slide: S('07-solucao-edo-laplace.pdf', 7), detail: <p>Veja o fluxo "Frações parciais" para os três casos (raízes simples, múltiplas e complexas). <M>{'C_k=(s-p_k)Y(s)|_{s=p_k}'}</M>.</p> },
+      { id: 'l4', type: 'step', x: 1, y: 5, label: 'Inverter termo a termo pela tabela', review: ['exp-log'], slide: S('06-transformada-laplace.pdf', 16), detail: <p><M>{'\\frac{C}{s-p}\\to Ce^{pt}'}</M>, <M>{'\\frac{D}{(s-p)^2}\\to Dte^{pt}'}</M>, par complexo → senoide amortecida.</p> },
+      { id: 'e', type: 'end', x: 0, y: 6, label: 'y(t) completa — conferir y(0) e o valor final', review: ['limites'], detail: <p>Confira: <M>y(0)</M> deve bater com a condição inicial e <M>{'\\lim_{t\\to\\infty}y'}</M> com o teorema do valor final, <M>{'\\lim_{s\\to0}sY(s)'}</M>. No exemplo, <M>{'y=4-10e^{-2t}+7e^{-3t}'}</M>: <M>{'y(0)=1'}</M> e <M>{'y(\\infty)=4'}</M>.</p> },
+    ],
+    edges: [
+      { from: 's', to: 'd' }, { from: 'd', to: 'c1', label: 'Não' }, { from: 'd', to: 'l1', label: 'Sim' },
+      { from: 'c1', to: 'c2' }, { from: 'c2', to: 'c3' }, { from: 'c3', to: 'c4' }, { from: 'c4', to: 'e' },
+      { from: 'l1', to: 'l2' }, { from: 'l2', to: 'l3' }, { from: 'l3', to: 'l4' }, { from: 'l4', to: 'e' },
+    ],
+  },
+
+  'fracoes-parciais': {
+    title: 'Transformada inversa por frações parciais',
+    desc: 'Que fórmula usar para cada tipo de raiz do denominador.',
+    topics: ['laplace', 'edo-laplace', 'funcao-transferencia'],
+    nodes: [
+      { id: 's', type: 'start', x: 0, y: 0, label: 'Y(s) = N(s) / D(s)', detail: <p>Ex.: <M>{'Y(s)=\\frac{2s+1}{s(s^2+2s+2)}'}</M> (Lista 1, 13d).</p> },
+      { id: 'd1', type: 'decision', x: 0, y: 1, label: 'grau N ≥ grau D?', review: ['polinomios'], detail: <p>A expansão exige fração <b>estritamente própria</b>. Se o grau do numerador não for menor, primeiro faça a divisão de polinômios.</p> },
+      { id: 'div', type: 'step', x: 1, y: 2, label: 'Dividir: Y = Q(s) + R(s)/D(s)', review: ['polinomios'], slide: S('12-espaco-estados.pdf', 37), detail: <p>O quociente <M>Q(s)</M> constante gera um impulso <M>{'Q\\delta(t)'}</M>; o resto <M>{'R/D'}</M> segue o fluxo.</p> },
+      { id: 'fat', type: 'step', x: 0, y: 2, label: 'Fatorar D(s): achar todas as raízes', review: ['polinomios'], slide: S('06-transformada-laplace.pdf', 24), detail: <p>Fatores já prontos (<M>s</M>, <M>s+2</M>) e quadráticos resolvidos por Bhaskara. Para cúbicos, teste raízes inteiras (divisores do termo constante) e divida por Briot–Ruffini.</p> },
+      { id: 'simp', type: 'step', x: 0, y: 3, label: 'Raízes simples: Cₖ = (s − pₖ)Y(s) em s = pₖ', review: ['fracoes'], slide: S('06-transformada-laplace.pdf', 25), detail: <><p>"Tampe" o fator <M>{'(s-p_k)'}</M> e substitua <M>{'s=p_k'}</M> no que sobrou:</p><MM>{String.raw`\frac{7s+10}{(s+1)(s+2)(s+5)}:\quad C_1=\frac{7(-1)+10}{(1)(4)}=\frac34`}</MM></> },
+      { id: 'd2', type: 'decision', x: 0, y: 4, label: 'Há raiz repetida?', detail: <p>Raiz de multiplicidade <M>m</M> pede <M>m</M> termos: <M>{'\\frac{D_0}{(s-p)^m}+\\dots+\\frac{D_{m-1}}{s-p}'}</M>.</p> },
+      { id: 'mult', type: 'step', x: 1, y: 4, label: 'Dₖ = (1/k!)·dᵏ/dsᵏ[(s−p)ᵐY] em s = p', review: ['derivadas', 'fracoes'], slide: S('06-transformada-laplace.pdf', 33), detail: <><MM>{String.raw`\frac{8}{s(s+2)^3}:\ D_0=\frac8s\Big|_{-2}=-4,\ D_1=\frac{d}{ds}\frac8s\Big|_{-2}=-2,\ D_2=\frac12\frac{d^2}{ds^2}\frac8s\Big|_{-2}=-1`}</MM><p>No tempo: <M>{String.raw`\frac{D_0}{(s-p)^3}\to D_0\frac{t^2}{2}e^{pt}`}</M>.</p></> },
+      { id: 'd3', type: 'decision', x: 0, y: 5, label: 'Há par complexo α ± jβ?', detail: <p>Os resíduos dos dois polos são conjugados: basta calcular um.</p> },
+      { id: 'comp', type: 'step', x: 1, y: 6, label: 'Par complexo: resíduo C em α + jβ → senoide amortecida', review: ['complexos', 'euler', 'trigonometria'], slide: S('06-transformada-laplace.pdf', 29), detail: <><MM>{String.raw`2|C|e^{\alpha t}\cos(\beta t+\angle C)=e^{\alpha t}\left[2\Re\{C\}\cos\beta t-2\Im\{C\}\operatorname{sen}\beta t\right]`}</MM><p>Para calcular <M>C</M>, use a simulação "Plano complexo → resíduo pela geometria dos polos".</p></> },
+      { id: 'inv', type: 'step', x: 0, y: 6, label: 'Inverter termo a termo', slide: S('06-transformada-laplace.pdf', 16), detail: <p>Cada termo vira uma exponencial, um <M>{'t^ke^{pt}'}</M> ou uma senoide amortecida.</p> },
+      { id: 'e', type: 'end', x: 0, y: 7, label: 'y(t) = soma dos termos', review: ['limites'], detail: <p>Confira com o valor final e, se quiser, com a simulação "Frações parciais: cada polo é um termo".</p> },
+    ],
+    edges: [
+      { from: 's', to: 'd1' }, { from: 'd1', to: 'fat', label: 'Não' }, { from: 'd1', to: 'div', label: 'Sim' }, { from: 'div', to: 'fat' },
+      { from: 'fat', to: 'simp' }, { from: 'simp', to: 'd2' }, { from: 'd2', to: 'mult', label: 'Sim' }, { from: 'd2', to: 'd3', label: 'Não' },
+      { from: 'mult', to: 'd3' }, { from: 'd3', to: 'comp', label: 'Sim' }, { from: 'd3', to: 'inv', label: 'Não' }, { from: 'comp', to: 'inv' }, { from: 'inv', to: 'e' },
+    ],
+  },
+
+  estabilidade: {
+    title: 'Estabilidade pelo critério de Routh–Hurwitz',
+    desc: 'Da condição necessária à contagem de trocas de sinal, com os dois casos especiais.',
+    topics: ['estabilidade'],
+    nodes: [
+      { id: 's', type: 'start', x: 0, y: 0, label: 'Polinômio característico A(s)', slide: S('10-estabilidade.pdf', 14), detail: <p>É o denominador da função de transferência (de malha fechada, se houver realimentação): <M>{'1+G(s)H(s)=0'}</M> depois de tirar os denominadores.</p> },
+      { id: 'd1', type: 'decision', x: 0, y: 1, label: 'Coeficientes todos ≠ 0 e de mesmo sinal?', detail: <p>Condição <b>necessária</b>. Para grau 2 ela também é suficiente; a partir do grau 3, não.</p> },
+      { id: 'no', type: 'end', x: 1, y: 2, label: 'Não é BIBO-estável', detail: <p>Ainda dá para montar a tabela e contar quantas raízes estão no semiplano direito.</p> },
+      { id: 'mont', type: 'step', x: 0, y: 2, label: 'Linhas sⁿ e sⁿ⁻¹: coeficientes alternados', slide: S('10-estabilidade.pdf', 17), detail: <MM>{String.raw`\begin{array}{c|ccc}s^n&a_0&a_2&a_4\\ s^{n-1}&a_1&a_3&a_5\end{array}`}</MM> },
+      { id: 'calc', type: 'step', x: 0, y: 3, label: 'Calcular a próxima linha (determinante cruzado ÷ pivô)', review: ['determinante'], slide: S('10-estabilidade.pdf', 17), detail: <><MM>{String.raw`c_1=\frac{a_1a_2-a_0a_3}{a_1},\qquad c_2=\frac{a_1a_4-a_0a_5}{a_1}`}</MM><p>Use a simulação "Routh célula por célula" para ver cada conta.</p></> },
+      { id: 'd2', type: 'decision', x: 0, y: 4, label: 'A linha inteira deu zero?', detail: <p>Sinal de raízes simétricas em relação à origem (por exemplo, <M>{'\\pm j\\omega'}</M>).</p> },
+      { id: 'aux', type: 'step', x: 1, y: 4, label: 'Polinômio auxiliar P(s); trocar a linha por dP/ds', review: ['derivadas'], slide: S('10-estabilidade.pdf', 33), detail: <p>Ex.: <M>{'P(s)=2s^2+8\\Rightarrow dP/ds=4s'}</M>. As raízes de <M>P</M> (<M>{'\\pm j2'}</M>) são raízes de <M>A</M>.</p> },
+      { id: 'd3', type: 'decision', x: 0, y: 5, label: '1º elemento da linha é zero?', detail: <p>Se só o primeiro elemento é zero, a próxima conta dividiria por zero.</p> },
+      { id: 'eps', type: 'step', x: 1, y: 5, label: 'Trocar o zero por ε > 0 pequeno', review: ['limites'], slide: S('10-estabilidade.pdf', 28), detail: <p>Continue as contas com <M>{'\\varepsilon'}</M> e analise os sinais no limite <M>{'\\varepsilon\\to0^+'}</M>.</p> },
+      { id: 'd4', type: 'decision', x: 0, y: 6, label: 'Chegou à linha s⁰?', detail: <p>A tabela tem <M>n+1</M> linhas.</p> },
+      { id: 'e', type: 'end', x: 0, y: 7, label: 'Contar trocas de sinal na 1ª coluna', slide: S('10-estabilidade.pdf', 18), detail: <p>Nº de trocas = nº de raízes no semiplano direito. Nenhuma troca e nenhuma linha nula ⇒ BIBO-estável. Linha nula sem trocas ⇒ raízes no eixo imaginário (marginalmente estável).</p> },
+    ],
+    edges: [
+      { from: 's', to: 'd1' }, { from: 'd1', to: 'no', label: 'Não' }, { from: 'd1', to: 'mont', label: 'Sim' }, { from: 'mont', to: 'calc' }, { from: 'calc', to: 'd2' },
+      { from: 'd2', to: 'aux', label: 'Sim' }, { from: 'd2', to: 'd3', label: 'Não' }, { from: 'aux', to: 'd3' },
+      { from: 'd3', to: 'eps', label: 'Sim' }, { from: 'd3', to: 'd4', label: 'Não' }, { from: 'eps', to: 'd4' },
+      { from: 'd4', to: 'calc', label: 'Não' }, { from: 'd4', to: 'e', label: 'Sim' },
+    ],
+  },
+
+  classificar: {
+    title: 'Classificar um sistema',
+    desc: 'As quatro perguntas da Lista 1, questão 1, na ordem.',
+    topics: ['classificacao'],
+    nodes: [
+      { id: 's', type: 'start', x: 1, y: 0, label: 'Escrever a relação entre u(t) e y(t)', detail: <p>Ex.: <M>{'y=5u-3'}</M>, <M>{'y=t\\,u(t)'}</M>, <M>{'\\dot y+2ty=u'}</M>.</p> },
+      { id: 'q1', type: 'decision', x: 1, y: 1, label: 'α₁u₁ + α₂u₂ gera α₁y₁ + α₂y₂?', slide: S('02-classificacao-sistemas.pdf', 11), detail: <><p>Teste a superposição. Atalho: se <M>u=0</M> não dá <M>y=0</M> (termo constante), já não é linear. Potências (<M>{'u^2'}</M>), <M>{'e^{u}'}</M>, <M>{'\\operatorname{sen} u'}</M> também quebram.</p></> },
+      { id: 'L', type: 'end', x: 0, y: 2, label: 'Linear', detail: <p>Ex.: <M>{'y=t\\,u(t)'}</M>, EDO linear.</p> },
+      { id: 'NL', type: 'end', x: 2, y: 2, label: 'Não linear', detail: <p>Ex.: <M>{'y=u^2'}</M>, <M>{'y=5u-3'}</M> (afim).</p> },
+      { id: 'q2', type: 'decision', x: 1, y: 3, label: 'Atrasar a entrada só atrasa a saída?', slide: S('02-classificacao-sistemas.pdf', 8), detail: <p>Compare a resposta a <M>{'u(t-t_0)'}</M> com <M>{'y(t-t_0)'}</M>. Na prática: algum coeficiente depende explicitamente de <M>t</M>? Então é variante.</p> },
+      { id: 'I', type: 'end', x: 0, y: 4, label: 'Invariante no tempo', detail: <p>Coeficientes constantes.</p> },
+      { id: 'V', type: 'end', x: 2, y: 4, label: 'Variante no tempo', detail: <p>Ex.: <M>{'y=t\\,u'}</M>, <M>{'\\dot y+2ty=u'}</M>, <M>{'\\int_0^t u\\,d\\tau'}</M> (limite fixo em 0).</p> },
+      { id: 'q3', type: 'decision', x: 1, y: 5, label: 'y(t) usa u em outros instantes além de t?', slide: S('02-classificacao-sistemas.pdf', 5), detail: <p>Derivadas, integrais e atrasos indicam memória.</p> },
+      { id: 'D', type: 'end', x: 0, y: 6, label: 'Dinâmico (com memória)', detail: <p>Ex.: <M>{'u(t-2)'}</M>, qualquer EDO.</p> },
+      { id: 'E', type: 'end', x: 2, y: 6, label: 'Estático (sem memória)', detail: <p>Ex.: <M>{'y=Ru'}</M>, <M>{'y=u^2'}</M>.</p> },
+      { id: 'q4', type: 'decision', x: 1, y: 7, label: 'Usa u(τ) com τ > t (futuro)?', slide: S('02-classificacao-sistemas.pdf', 15), detail: <p>Ex. não causal: <M>{'y(t)=u(t+1)'}</M>. Todo sistema físico é causal.</p> },
+      { id: 'C', type: 'end', x: 0, y: 8, label: 'Causal', detail: <p>Só depende do presente e do passado.</p> },
+      { id: 'NC', type: 'end', x: 2, y: 8, label: 'Não causal', detail: <p>Depende do futuro: não realizável fisicamente.</p> },
+    ],
+    edges: [
+      { from: 's', to: 'q1' }, { from: 'q1', to: 'L', label: 'Sim' }, { from: 'q1', to: 'NL', label: 'Não' }, { from: 'L', to: 'q2' }, { from: 'NL', to: 'q2' },
+      { from: 'q2', to: 'I', label: 'Sim' }, { from: 'q2', to: 'V', label: 'Não' }, { from: 'I', to: 'q3' }, { from: 'V', to: 'q3' },
+      { from: 'q3', to: 'D', label: 'Sim' }, { from: 'q3', to: 'E', label: 'Não' }, { from: 'D', to: 'q4' }, { from: 'E', to: 'q4' },
+      { from: 'q4', to: 'NC', label: 'Sim' }, { from: 'q4', to: 'C', label: 'Não' },
+    ],
+  },
+
+  'segunda-ordem': {
+    title: 'Especificações de resposta ao degrau (1ª, 2ª ordem e polos dominantes)',
+    desc: 'Da função de transferência ao sobressinal, ao instante de pico e aos tempos de subida e de estabilização.',
+    topics: ['regime-transitorio'],
+    nodes: [
+      { id: 's', type: 'start', x: 0, y: 0, label: 'G(s) (malha fechada, se houver realimentação)', review: ['polinomios'], slide: S('11-regime-transitorio.pdf', 9), detail: <p>Com realimentação unitária: <M>{'T=\\frac{G}{1+G}'}</M> antes de tudo.</p> },
+      { id: 'd0', type: 'decision', x: 0, y: 1, label: 'Ordem maior que 2?', detail: <p>Polos reais ou complexos a mais exigem verificar dominância.</p> },
+      { id: 'dom', type: 'step', x: 1, y: 2, label: 'Polos dominantes: desprezar os mais rápidos, mantendo G(0)', slide: S('11-regime-transitorio.pdf', 32), detail: <p>Regra prática: o polo desprezado deve estar pelo menos 5 vezes mais à esquerda que os dominantes. Ex.: <M>{'\\frac{50}{(s^2+2s+5)(s+10)}\\approx\\frac{5}{s^2+2s+5}'}</M> (divide por 10 para manter o ganho estático).</p> },
+      { id: 'norm', type: 'step', x: 0, y: 2, label: 'Comparar com Kωn²/(s² + 2ξωn s + ωn²)', slide: S('11-regime-transitorio.pdf', 9), detail: <p>Deixe o coeficiente de <M>{'s^2'}</M> igual a 1 (divida tudo se preciso).</p> },
+      { id: 'id', type: 'step', x: 0, y: 3, label: 'ωn = √(termo constante); ξ = (coef. de s) ÷ 2ωn', review: ['polinomios'], detail: <p><M>{'s^2+6s+25'}</M>: <M>{'\\omega_n=5'}</M>, <M>{'\\xi=6/10=0{,}6'}</M>.</p> },
+      { id: 'd1', type: 'decision', x: 0, y: 4, label: 'ξ < 1?', review: ['polinomios'], detail: <p>Equivale a Δ &lt; 0 no denominador: polos complexos.</p> },
+      { id: 'over', type: 'step', x: 1, y: 6, label: 'ξ ≥ 1: sem sobressinal; tₛₛ pelo polo mais lento', review: ['exp-log'], slide: S('11-regime-transitorio.pdf', 12), detail: <p>Com <M>{'\\xi\\ge1{,}2'}</M>, aproxima-se por 1ª ordem com o polo mais lento: <M>{'t_{ss}\\approx 4/|p_1|'}</M> (2%). Com <M>{'\\xi=1'}</M>: <M>{'t_{ss}=4{,}744/\\omega_n'}</M> (5%) ou <M>{'5{,}834/\\omega_n'}</M> (2%).</p> },
+      { id: 'under', type: 'step', x: 0, y: 5, label: 'ωd = ωn√(1 − ξ²); polos −ξωn ± jωd', review: ['complexos'], detail: <p><M>{'\\omega_d=5\\sqrt{1-0{,}36}=4'}</M>; polos <M>{'-3\\pm j4'}</M>.</p> },
+      { id: 'spec', type: 'step', x: 0, y: 6, label: 'Mp, tp, tr, tₛₛ pelas fórmulas', review: ['exp-log', 'trigonometria'], slide: S('11-regime-transitorio.pdf', 24), detail: <MM>{String.raw`M_p=e^{-\xi\pi/\sqrt{1-\xi^2}},\ \ t_p=\frac{\pi}{\omega_d},\ \ t_r=\frac{\pi-\cos^{-1}\xi}{\omega_d},\ \ t_{ss}\approx\frac{4}{\xi\omega_n}`}</MM> },
+      { id: 'e', type: 'end', x: 0, y: 7, label: 'Mp depende só de ξ; tₛₛ só da parte real ξωn', detail: <p>Isso orienta o projeto: sobressinal fixa <M>{'\\xi'}</M>; tempo de estabilização fixa <M>{'\\xi\\omega_n'}</M> (Lista 2, questões 7 a 9).</p> },
+    ],
+    edges: [
+      { from: 's', to: 'd0' }, { from: 'd0', to: 'dom', label: 'Sim' }, { from: 'd0', to: 'norm', label: 'Não' }, { from: 'dom', to: 'norm' },
+      { from: 'norm', to: 'id' }, { from: 'id', to: 'd1' }, { from: 'd1', to: 'over', label: 'Não' }, { from: 'd1', to: 'under', label: 'Sim' },
+      { from: 'under', to: 'spec' }, { from: 'spec', to: 'e' }, { from: 'over', to: 'e' },
+    ],
+  },
+
+  'espaco-estados': {
+    title: 'Espaço de estados ↔ função de transferência, controlabilidade e observabilidade',
+    desc: 'Os caminhos da aula 12 e os testes da aula 13.',
+    topics: ['espaco-estados', 'controlabilidade'],
+    nodes: [
+      { id: 's', type: 'start', x: 1, y: 0, label: 'O que o enunciado dá?', detail: <p>Ou as matrizes <M>A, B, C, D</M>, ou uma função de transferência <M>G(s)</M>.</p> },
+      { id: 'd', type: 'decision', x: 1, y: 1, label: 'Tem as matrizes A, B, C, D?', detail: <p>Os dois caminhos levam ao mesmo modelo, visto de formas diferentes.</p> },
+      { id: 'a1', type: 'step', x: 0, y: 2, label: 'det(sI − A): autovalores = polos', review: ['determinante', 'autovalores'], slide: S('12-espaco-estados.pdf', 24), detail: <p>Ex.: <M>{'A=\\begin{bmatrix}0&1\\\\-2&-3\\end{bmatrix}'}</M>: <M>{'\\det(sI-A)=s^2+3s+2'}</M>, autovalores −1 e −2.</p> },
+      { id: 'a2', type: 'step', x: 0, y: 3, label: '(sI − A)⁻¹ = adj(sI − A)/det', review: ['matrizes'], slide: S('12-espaco-estados.pdf', 24), detail: <MM>{String.raw`\begin{bmatrix}a&b\\c&d\end{bmatrix}^{-1}=\frac{1}{ad-bc}\begin{bmatrix}d&-b\\-c&a\end{bmatrix}`}</MM> },
+      { id: 'a3', type: 'step', x: 0, y: 4, label: 'G(s) = C(sI − A)⁻¹B + D', review: ['matrizes'], slide: S('12-espaco-estados.pdf', 25), detail: <p>Ex. 15: <M>{'G=\\frac{0{,}5s+2}{s^2+3s+2}'}</M>.</p> },
+      { id: 'b1', type: 'decision', x: 2, y: 2, label: 'grau do num. = grau do den.?', review: ['polinomios'], detail: <p>Função biprópria: há transmissão direta (<M>{'D\\neq0'}</M>).</p> },
+      { id: 'b2', type: 'step', x: 3, y: 3, label: 'Dividir: D = quociente; seguir com o resto G′(s)', review: ['polinomios'], slide: S('12-espaco-estados.pdf', 37), detail: <p>Ex. 16: <M>{'G=0{,}5+\\frac{s^2+3}{s^3+4s^2+5s+2}'}</M>, logo <M>{'D=0{,}5'}</M>.</p> },
+      { id: 'b3', type: 'step', x: 2, y: 4, label: 'Escrever na forma controlável, observável ou de Jordan', review: ['fracoes'], slide: S('12-espaco-estados.pdf', 27), detail: <p>Controlável: última linha de <M>A</M> com <M>{'-a_n,\\dots,-a_1'}</M>, <M>{'B=[0\\ \\cdots\\ 1]^T'}</M>. Jordan: frações parciais.</p> },
+      { id: 't', type: 'step', x: 1, y: 5, label: 'Montar 𝒞 = [B AB …] e 𝒪 = [C; CA; …]', review: ['matrizes', 'posto'], slide: S('13-controlabilidade-observabilidade.pdf', 7), detail: <p>Para <M>n=2</M>: <M>{'\\mathcal C=[B\\ \\ AB]'}</M>, <M>{'\\mathcal O=\\begin{bmatrix}C\\\\CA\\end{bmatrix}'}</M>.</p> },
+      { id: 'd2', type: 'decision', x: 1, y: 6, label: 'Algum posto < n?', review: ['posto', 'determinante'], detail: <p>Para matriz quadrada, posto <M>{'=n \\iff \\det\\neq0'}</M>.</p> },
+      { id: 'pbh', type: 'end', x: 2, y: 7, label: 'Teste PBH: achar o modo que cancela em G(s)', review: ['autovalores', 'posto'], slide: S('13-controlabilidade-observabilidade.pdf', 11), detail: <p>O sistema não é controlável (ou não é observável). Para cada autovalor, calcule <M>{'\\operatorname{posto}[A-\\lambda I\\ \\ B]'}</M> (ou com <M>C</M> embaixo): onde cair abaixo de <M>n</M>, o modo não é controlável (ou observável) e some de <M>G(s)</M>.</p> },
+      { id: 'ok', type: 'end', x: 0, y: 7, label: 'Controlável e observável: polos de G = autovalores de A', detail: <p>Nenhum cancelamento polo–zero.</p> },
+    ],
+    edges: [
+      { from: 's', to: 'd' }, { from: 'd', to: 'a1', label: 'Sim' }, { from: 'd', to: 'b1', label: 'Não' },
+      { from: 'a1', to: 'a2' }, { from: 'a2', to: 'a3' }, { from: 'a3', to: 't' },
+      { from: 'b1', to: 'b2', label: 'Sim' }, { from: 'b1', to: 'b3', label: 'Não' }, { from: 'b2', to: 'b3' }, { from: 'b3', to: 't' },
+      { from: 't', to: 'd2' }, { from: 'd2', to: 'pbh', label: 'Sim' }, { from: 'd2', to: 'ok', label: 'Não' },
+    ],
+  },
+
+  'diagrama-blocos': {
+    title: 'Simplificar um diagrama de blocos',
+    desc: 'O procedimento repetitivo da aula 9.',
+    topics: ['diagrama-blocos'],
+    nodes: [
+      { id: 's', type: 'start', x: 0, y: 0, label: 'Diagrama com entrada R e saída Y', slide: S('09-diagrama-blocos.pdf', 14), detail: <p>Objetivo: um único bloco <M>{'G_{mf}=Y/R'}</M>.</p> },
+      { id: 'a', type: 'step', x: 0, y: 1, label: 'Procurar série, paralelo ou malha simples', slide: S('09-diagrama-blocos.pdf', 8), detail: <p>Comece pelos laços mais internos.</p> },
+      { id: 'd1', type: 'decision', x: 0, y: 2, label: 'Encontrou alguma?', detail: <p>Um laço só é "simples" se o sinal realimentado sai da saída do ramo direto e volta ao somador da entrada desse mesmo ramo.</p> },
+      { id: 'sub', type: 'step', x: 0, y: 3, label: 'Trocar: G₁G₂; G₁ ± G₂; G/(1 ± GH)', review: ['fracoes'], slide: S('09-diagrama-blocos.pdf', 10), detail: <p>Realimentação <b>negativa</b>: <M>{'\\frac{G}{1+GH}'}</M>; <b>positiva</b>: <M>{'\\frac{G}{1-GH}'}</M>.</p> },
+      { id: 'mv', type: 'step', x: 1, y: 3, label: 'Mover somador ou derivação, compensando com G ou 1/G', slide: S('09-diagrama-blocos.pdf', 15), detail: <p>Se o sinal deixou de atravessar <M>G</M>, ganha um <M>G</M>; se passou a atravessar, ganha <M>{'1/G'}</M>.</p> },
+      { id: 'd2', type: 'decision', x: 0, y: 4, label: 'Sobrou um único bloco?', detail: <p>Se não, repita a busca.</p> },
+      { id: 'e', type: 'end', x: 0, y: 5, label: 'Gmf = Y/R; simplificar a fração', review: ['fracoes'], detail: <p>Multiplique numerador e denominador para tirar frações "dentro de frações" (Exemplo 2: <M>{'\\frac{G_1G_2G_5+G_1G_6}{1-G_1G_3+G_1G_2G_4}'}</M>).</p> },
+    ],
+    edges: [
+      { from: 's', to: 'a' }, { from: 'a', to: 'd1' }, { from: 'd1', to: 'sub', label: 'Sim' }, { from: 'd1', to: 'mv', label: 'Não' },
+      { from: 'mv', to: 'a' }, { from: 'sub', to: 'd2' }, { from: 'd2', to: 'a', label: 'Não' }, { from: 'd2', to: 'e', label: 'Sim' },
+    ],
+  },
+}

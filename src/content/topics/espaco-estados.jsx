@@ -23,6 +23,8 @@ export default function EspacoEstados() {
 
       <SimSlot name="estados" initial="massa" />
 
+      <p>A matriz <M>A</M> é uma transformação: os autovetores são as direções que ela só estica. Compare as retas verdes daqui com as trajetórias acima.</p>
+      <SimSlot name="matriz" />
       <h2>Solução da equação de estados<Slide p={[14, 15]} /></h2>
       <MM>{String.raw`s\mathbf X(s)-\mathbf x(0)=A\mathbf X(s)+B\mathbf U(s)\ \Rightarrow\ \mathbf X(s)=\Phi(s)\mathbf x(0)+\Phi(s)B\mathbf U(s),\qquad \Phi(s)=(sI-A)^{-1}`}</MM>
       <p>A matriz de transição de estados é <M>{String.raw`\Phi(t)=\mathcal L^{-1}\{(sI-A)^{-1}\}=e^{At}`}</M>, com a exponencial matricial <M>{String.raw`e^{At}=I+At+\frac{A^2t^2}{2!}+\dots`}</M>. No tempo:</p>
@@ -31,7 +33,7 @@ export default function EspacoEstados() {
 
       <h3>Teorema de Cayley–Hamilton<Slide p={[16, 17]} /></h3>
       <p>Toda matriz satisfaz sua equação característica: se <M>{'c(\\lambda)=\\det(\\lambda I-A)=\\lambda^n+\\alpha_1\\lambda^{n-1}+\\dots+\\alpha_n'}</M>, então <M>{'c(A)=0'}</M>. Consequência: qualquer função matricial <M>f(A)</M> é um polinômio de grau menor que <M>n</M>, <M>{'p(A)=a_1A^{n-1}+\\dots+a_nI'}</M>, com coeficientes obtidos de <M>{'f(\\lambda_i)=p(\\lambda_i)'}</M> nos autovalores (e das derivadas, para autovalores múltiplos).</p>
-      <Exercise id="t-ee-12" src={{ p: [18, 19] }} num="12" topic="Exemplo ilustrativo 12 dos slides"
+      <Exercise id="t-ee-12" review={['autovalores', 'sistemas-lineares', 'matrizes']} src={{ p: [18, 19] }} num="12" topic="Exemplo ilustrativo 12 dos slides"
         steps={[
           { title: 'Autovalores', body: <MM>{String.raw`\det(\lambda I-A)=(\lambda+1)^2(\lambda+0{,}5)=0\ \Rightarrow\ \lambda_1=-0{,}5,\ \lambda_2=\lambda_3=-1`}</MM> },
           { title: 'Condições', body: <><p>Com <M>{'f(\\lambda)=e^{\\lambda t}'}</M> e <M>{'p(\\lambda)=a_1\\lambda^2+a_2\\lambda+a_3'}</M>, o autovalor duplo exige também a derivada (em <M>{'\\lambda'}</M>):</p><MM>{String.raw`\begin{cases}e^{-0{,}5t}=0{,}25a_1-0{,}5a_2+a_3\\ e^{-t}=a_1-a_2+a_3\\ te^{-t}=-2a_1+a_2\end{cases}`}</MM></> },
@@ -41,7 +43,7 @@ export default function EspacoEstados() {
         <p>Calcule <M>{'e^{At}'}</M> por Cayley–Hamilton para <M>{String.raw`A=\begin{bmatrix}-1&0{,}5&0\\0&-1&0\\1&1&-0{,}5\end{bmatrix}`}</M>.</p>
       </Exercise>
 
-      <Exercise id="t-ee-13" src={{ p: [21, 23] }} num="13" topic="Exemplo ilustrativo 13 dos slides"
+      <Exercise id="t-ee-13" review={['matrizes', 'fracoes']} src={{ p: [21, 23] }} num="13" topic="Exemplo ilustrativo 13 dos slides"
         steps={[
           { title: 'Matrizes numéricas', body: <MM>{String.raw`A=\begin{bmatrix}0&-400\\25&-250\end{bmatrix},\quad B=\begin{bmatrix}400\\0\end{bmatrix},\quad C=\begin{bmatrix}0&10\end{bmatrix},\quad \mathbf x(0)=\begin{bmatrix}1\\0\end{bmatrix},\quad U(s)=\frac{0{,}1}{s}`}</MM> },
           { title: 'Matriz de transição', body: <MM>{String.raw`\Phi(s)=(sI-A)^{-1}=\frac{1}{s^2+250s+10\,000}\begin{bmatrix}s+250&-400\\25&s\end{bmatrix}`}</MM> },
@@ -69,7 +71,7 @@ export default function EspacoEstados() {
           <tr><td>Canônica de Jordan</td><td>polos distintos: <M>{String.raw`A=\mathrm{diag}(-p_1,\dots,-p_n),\ B=\begin{bmatrix}1&\cdots&1\end{bmatrix}^T,\ C=\begin{bmatrix}c_1&\cdots&c_n\end{bmatrix}`}</M>, com <M>{'c_i'}</M> das frações parciais</td><td>modos desacoplados; polos múltiplos geram 1s na supradiagonal de <M>A</M> e 0s em <M>B</M></td></tr>
         </tbody></table></div>
       <p>Funções com mais zeros que polos são não causais (a divisão polinomial mostra que a saída dependeria de derivadas da entrada) e não têm significado físico. Com <b>grau do numerador igual ao do denominador</b>, divide-se: <M>{"G(s)=c_0+G'(s)"}</M>, com <M>{'b_i=c_i-c_0a_i'}</M>; realiza-se <M>{"G'(s)"}</M> e faz-se <M>{'D=c_0'}</M>.</p>
-      <Exercise id="t-ee-16" src={{ p: [39, 41] }} num="16" topic="Exemplo ilustrativo 16 dos slides"
+      <Exercise id="t-ee-16" review={['polinomios', 'fracoes']} src={{ p: [39, 41] }} num="16" topic="Exemplo ilustrativo 16 dos slides"
         steps={[
           { title: 'Divisão e frações parciais', body: <MM>{String.raw`G(s)=0{,}5+\frac{s^2+3}{s^3+4s^2+5s+2}=0{,}5+\frac{s^2+3}{(s+1)^2(s+2)}=0{,}5+\frac{4}{(s+1)^2}-\frac{6}{s+1}+\frac{7}{s+2}`}</MM> },
           { title: 'Forma controlável', body: <MM>{String.raw`\dot{\mathbf x}=\begin{bmatrix}0&1&0\\0&0&1\\-2&-5&-4\end{bmatrix}\mathbf x+\begin{bmatrix}0\\0\\1\end{bmatrix}u,\quad y=\begin{bmatrix}3&0&1\end{bmatrix}\mathbf x+0{,}5u`}</MM> },

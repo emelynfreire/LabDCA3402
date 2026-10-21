@@ -23,7 +23,7 @@ export function usePlayback(tEnd, { speed = 1, loop = true, autoplay = true } = 
         let nt = tRef.current + dt
         if (nt > tEnd) {
           if (loop) nt = 0
-          else { nt = tEnd; setPlaying(false) }
+          else { nt = tEnd; setPlaying(false); setT(tEnd) }
         }
         tRef.current = nt
         if (now - lastUi.current > 50) { lastUi.current = now; setT(nt) }

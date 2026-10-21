@@ -22,6 +22,7 @@ export default function Linearizacao() {
       </Callout>
       <p>O modelo vale apenas para desvios pequenos: quanto maior o desvio, mais pesam os termos desprezados.</p>
 
+      <SimSlot name="taylor" />
       <h2>Exemplo: tanque com saída livre (aula 4)<Slide file="04-equacoes-diferenciais.pdf" p={[6, 7]} label="aula 4, p. 6–7" /></h2>
       <p>O modelo não linear dos slides é <M>{String.raw`A\dot y=u-a\sqrt{2gy}`}</M>, ou seja, <M>{String.raw`f(y,u)=\frac{1}{A}\left(u-a\sqrt{2gy}\right)`}</M>.</p>
       <ol>
@@ -34,7 +35,7 @@ export default function Linearizacao() {
 
       <SimSlot name="tanque" />
 
-      <Exercise id="t-lin-1" src={{ file: '04-equacoes-diferenciais.pdf', p: 17, label: 'aula 4, p. 17' }} num="Ex." topic="Com os parâmetros da Simulação 3 dos slides (A = 15, a = 0,2, g = 1000)"
+      <Exercise id="t-lin-1" review={['taylor']} src={{ file: '04-equacoes-diferenciais.pdf', p: 17, label: 'aula 4, p. 17' }} num="Ex." topic="Com os parâmetros da Simulação 3 dos slides (A = 15, a = 0,2, g = 1000)"
         steps={[
           { title: 'Vazão de equilíbrio', body: <MM>{String.raw`\bar u=a\sqrt{2g\bar y}=0{,}2\sqrt{2\cdot1000\cdot20}=0{,}2\cdot200=40`}</MM> },
           { title: 'Resistência linearizada', body: <MM>{String.raw`R=\frac{2\sqrt{20}}{0{,}2\sqrt{2000}}=\frac{8{,}944}{8{,}944}=1`}</MM> },

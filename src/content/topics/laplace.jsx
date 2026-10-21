@@ -66,18 +66,20 @@ export default function Laplace() {
       <p>Se <M>{'p_{1,2}=\\alpha_1\\pm j\\beta_1'}</M>, então <M>{'C_2=\\bar C_1'}</M> e a parcela real pode ser escrita de duas formas equivalentes:</p>
       <MM>{String.raw`\underbrace{2|C_1|e^{\alpha_1t}\cos(\beta_1t+\angle C_1)}_{\text{Abordagem 1}}=\underbrace{e^{\alpha_1t}\left[2\Re\{C_1\}\cos\beta_1t-2\Im\{C_1\}\sen\beta_1t\right]}_{\text{Abordagem 2}}`}</MM>
       <p>A primeira é compacta e mostra amplitude, decaimento e defasagem; a segunda dispensa a forma polar.</p>
+      <p>O resíduo complexo pode ser lido no plano <M>s</M>: o módulo é o produto das distâncias aos zeros dividido pelo produto das distâncias aos outros polos, e o ângulo é a soma correspondente dos ângulos.</p>
+      <SimSlot name="complexo" initial="res" />
       <h3>Raízes múltiplas<Slide p={33} /></h3>
       <MM>{String.raw`\frac{N(s)}{(s-p)^m}=\frac{D_0}{(s-p)^m}+\dots+\frac{D_{m-1}}{s-p},\quad D_k=\frac{1}{k!}\frac{d^k}{ds^k}\left[(s-p)^mX(s)\right]_{s=p},\quad x(t)=D_0\frac{t^{m-1}}{(m-1)!}e^{pt}+\dots+D_{m-1}e^{pt}`}</MM>
 
       <h2>Exemplos dos slides</h2>
-      <Exercise id="t-lap-1" src={{ p: 26 }} num="1" topic="Raízes reais distintas"
+      <Exercise id="t-lap-1" review={['fracoes']} src={{ p: 26 }} num="1" topic="Raízes reais distintas"
         steps={[
           { title: 'Resíduos', body: <MM>{String.raw`C_1=\frac{7s+10}{(s+2)(s+5)}\Big|_{-1}=\frac{3}{4},\quad C_2=\frac{7s+10}{(s+1)(s+5)}\Big|_{-2}=\frac{4}{3},\quad C_3=\frac{7s+10}{(s+1)(s+2)}\Big|_{-5}=-\frac{25}{12}`}</MM> },
         ]}
         answer={<MM>{String.raw`x(t)=\tfrac34e^{-t}+\tfrac43e^{-2t}-\tfrac{25}{12}e^{-5t},\quad t\ge 0`}</MM>}>
         <p>Inverta <M>{String.raw`X(s)=\dfrac{7s+10}{(s+1)(s+2)(s+5)}`}</M>.</p>
       </Exercise>
-      <Exercise id="t-lap-2" src={{ p: [31, 32] }} num="2" topic="Raízes complexas"
+      <Exercise id="t-lap-2" review={['complexos', 'trigonometria']} src={{ p: [31, 32] }} num="2" topic="Raízes complexas"
         steps={[
           { title: 'Raízes', body: <p><M>{'p_1=0'}</M> e <M>{'p_{2,3}=-6\\pm j8'}</M>.</p> },
           { title: 'Resíduos', body: <MM>{String.raw`C_1=\frac{150}{100}=1{,}5,\qquad C_2=\frac{150}{s(s+6+j8)}\Big|_{s=-6+j8}=\frac{150}{(-6+j8)(j16)}=-0{,}75+j0{,}5625`}</MM> },
@@ -87,7 +89,7 @@ export default function Laplace() {
         answer={<p>As duas expressões coincidem: <M>{'1{,}875\\cos(8t+2{,}5)=-1{,}5\\cos 8t-1{,}125\\sen 8t'}</M>.</p>}>
         <p>Inverta <M>{String.raw`X(s)=\dfrac{150}{s(s^2+12s+100)}`}</M>.</p>
       </Exercise>
-      <Exercise id="t-lap-3" src={{ p: [34, 35] }} num="3" topic="Raízes múltiplas"
+      <Exercise id="t-lap-3" review={['derivadas', 'fracoes']} src={{ p: [34, 35] }} num="3" topic="Raízes múltiplas"
         steps={[
           { title: 'Expansão', body: <MM>{String.raw`\frac{8}{s(s+2)^3}=\frac{C_1}{s}+\frac{D_0}{(s+2)^3}+\frac{D_1}{(s+2)^2}+\frac{D_2}{s+2}`}</MM> },
           { title: 'Coeficientes', body: <MM>{String.raw`C_1=\frac{8}{8}=1,\quad D_0=\frac{8}{s}\Big|_{-2}=-4,\quad D_1=\frac{d}{ds}\frac{8}{s}\Big|_{-2}=-\frac{8}{s^2}\Big|_{-2}=-2,\quad D_2=\frac12\frac{d}{ds}\left(-\frac{8}{s^2}\right)\Big|_{-2}=\frac12\cdot\frac{16}{s^3}\Big|_{-2}=-1`}</MM> },

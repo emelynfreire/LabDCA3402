@@ -23,7 +23,7 @@ export default function Eletromecanicos() {
       <h2>Espaço de estados</h2>
       <p>Com <M>{'x_1=i'}</M>, <M>{'x_2=\\omega'}</M> e <M>{'x_3=\\theta'}</M>:</p>
       <MM>{String.raw`\dot{\mathbf x}=\begin{bmatrix}-\frac RL&-\frac{K_b}{L}&0\\\frac{K_t}{J}&-\frac BJ&0\\0&1&0\end{bmatrix}\mathbf x+\begin{bmatrix}\frac1L\\0\\0\end{bmatrix}v`}</MM>
-      <Exercise id="t-u3-mot" num="Ex." topic="Velocidade em regime"
+      <Exercise id="t-u3-mot" review={['limites']} num="Ex." topic="Velocidade em regime"
         steps={[
           { title: 'Valor final', body: <MM>{String.raw`\omega_\infty=\lim_{s\to0}s\,\frac{\Omega(s)}{V(s)}\cdot\frac{V_0}{s}=\frac{K_t}{RB+K_tK_b}V_0`}</MM> },
           { title: 'Números', body: <MM>{String.raw`\omega_\infty=\frac{0{,}5}{1\cdot0{,}05+0{,}25}\cdot12=\frac{0{,}5}{0{,}3}\cdot12=20\ \text{rad/s}`}</MM> },

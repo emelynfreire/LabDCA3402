@@ -3,6 +3,10 @@ import { Link, useParams } from 'react-router-dom'
 import { topics, topicById, units, brDate } from '../content/course.js'
 import { useProgress } from '../components/progress.jsx'
 import { SlideContext, pdfUrl } from '../components/SlideRef.jsx'
+import { ReviewChips } from '../components/Review.jsx'
+import { TOPIC_PREREQS } from '../content/review/index.js'
+import { FLOWS } from '../content/flows.jsx'
+import { FlowSlot } from './FluxosPage.jsx'
 
 const modules = import.meta.glob('../content/topics/*.jsx')
 const cache = {}
@@ -36,11 +40,18 @@ export default function TopicPage() {
       </header>
       {u.preview && <div className="warn"><span className="tag">Material ainda não disponibilizado</span>O professor ainda vai disponibilizar o material da Unidade 3. Até lá, este texto é uma prévia baseada na bibliografia da disciplina (Lathi; apostila de Medeiros e Maitelli) e será revisto com os slides.</div>}
       {!t.slides && !u.preview && <div className="note"><span className="tag">Sobre este tópico</span>Não há slides desta aula no material recebido. O conteúdo abaixo segue a abordagem usual da disciplina e usa exemplos dos próprios slides (como o tanque da aula 4); confira com suas anotações.</div>}
+      {TOPIC_PREREQS[t.id] && <ReviewChips keys={TOPIC_PREREQS[t.id]} label="Pré-requisitos (abra se precisar relembrar):" />}
       <SlideContext.Provider value={t.pdf || null}>
         <Suspense fallback={<div className="loading">Carregando conteúdo…</div>}>
           <Content />
         </Suspense>
       </SlideContext.Provider>
+      {Object.entries(FLOWS).filter(([, f]) => f.topics[0] === t.id || false).map(([k]) => (
+        <div key={k}><h2>Fluxograma do método</h2><FlowSlot id={k} /></div>
+      ))}
+      {Object.entries(FLOWS).filter(([, f]) => f.topics.includes(t.id) && f.topics[0] !== t.id).map(([k, f]) => (
+        <p key={k} className="small">Fluxograma relacionado: <Link to={`/fluxos/${k}`}>{f.title}</Link></p>
+      ))}
       <div className="mark-done btn-row">
         <button className={'btn ' + (done[t.id] ? '' : 'primary')} onClick={() => toggleDone(t.id)}>
           {done[t.id] ? '✓ Tópico marcado como estudado' : 'Marcar tópico como estudado'}

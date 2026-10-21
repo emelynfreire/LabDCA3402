@@ -34,7 +34,7 @@ export default function SistemasEletricos() {
       <MM>{String.raw`\frac{V_o(s)}{V_i(s)}=-\frac{Z_2(s)}{Z_1(s)}`}</MM>
       <p>Com <M>{'Z_1=R'}</M> e <M>{'Z_2=1/(Cs)'}</M> obtém-se um integrador, <M>{'-\\frac{1}{RCs}'}</M>; trocando-os, um derivador. Combinações de R e C realizam controladores (PI, PD, avanço e atraso), tema de Controle.</p>
 
-      <Exercise id="t-u3-el" num="Ex." topic="Prática com impedâncias"
+      <Exercise id="t-u3-el" review={['fracoes']} num="Ex." topic="Prática com impedâncias"
         steps={[
           { title: 'Impedância do ramo paralelo', body: <MM>{String.raw`Z_p=\frac{R_2\cdot\frac{1}{Cs}}{R_2+\frac{1}{Cs}}=\frac{R_2}{R_2Cs+1}`}</MM> },
           { title: 'Divisor de tensão', body: <MM>{String.raw`\frac{V_o}{V_i}=\frac{Z_p}{R_1+Z_p}=\frac{R_2}{R_1R_2Cs+R_1+R_2}`}</MM> },

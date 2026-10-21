@@ -48,12 +48,12 @@ function timeTerms(terms) {
       const tpart = pw === 0 ? '' : pw === 1 ? 't\\,' : `\\tfrac{t^{${pw}}}{${fact(pw)}}`
       if (Math.abs(p.im) < 1e-9) {
         if (Math.abs(cf.re) < 1e-9) return
-        const e = Math.abs(p.re) < 1e-9 ? '' : `e^{${texNum(p.re)}t}`
+        const e = Math.abs(p.re) < 1e-9 ? '' : `e^{${Math.abs(Math.abs(p.re) - 1) < 1e-9 ? (p.re < 0 ? '-' : '') : texNum(p.re)}t}`
         const body = tpart + e
         parts.push({ c: cf.re, body: body || '' })
       } else {
         const A = 2 * cf.re, B = -2 * cf.im
-        const e = Math.abs(p.re) < 1e-9 ? '' : `e^{${texNum(p.re)}t}`
+        const e = Math.abs(p.re) < 1e-9 ? '' : `e^{${Math.abs(Math.abs(p.re) - 1) < 1e-9 ? (p.re < 0 ? '-' : '') : texNum(p.re)}t}`
         const w = texNum(p.im)
         if (Math.abs(A) > 1e-9) parts.push({ c: A, body: `${tpart}${e}\\cos(${w}t)` })
         if (Math.abs(B) > 1e-9) parts.push({ c: B, body: `${tpart}${e}\\,\\sen(${w}t)` })

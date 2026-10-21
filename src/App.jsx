@@ -11,6 +11,9 @@ const QuizPage = lazy(() => import('./pages/QuizPage.jsx'))
 const LabPage = lazy(() => import('./pages/LabPage.jsx'))
 const Formulario = lazy(() => import('./pages/Formulario.jsx'))
 const Sobre = lazy(() => import('./pages/Sobre.jsx'))
+const RevisaoPage = lazy(() => import('./pages/RevisaoPage.jsx'))
+const FluxosPage = lazy(() => import('./pages/FluxosPage.jsx'))
+const CitarPage = lazy(() => import('./pages/CitarPage.jsx'))
 
 function ScrollTop() {
   const { pathname } = useLocation()
@@ -34,6 +37,11 @@ export default function App() {
               <Route path="/laboratorio" element={<LabPage />} />
               <Route path="/formulario" element={<Formulario />} />
               <Route path="/sobre" element={<Sobre />} />
+              <Route path="/revisao" element={<RevisaoPage />} />
+              <Route path="/revisao/:k" element={<RevisaoPage />} />
+              <Route path="/fluxos" element={<FluxosPage />} />
+              <Route path="/fluxos/:id" element={<FluxosPage />} />
+              <Route path="/citar" element={<CitarPage />} />
               <Route path="*" element={<div className="page"><h1>Página não encontrada</h1><p>Use o menu lateral para escolher um tópico.</p></div>} />
             </Routes>
           </Suspense>

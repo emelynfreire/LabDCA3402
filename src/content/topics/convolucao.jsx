@@ -40,7 +40,7 @@ export default function Convolucao() {
       <SimSlot name="convolucao" />
 
       <h2>Exercício dos slides: circuito RL<Slide p={21} /></h2>
-      <Exercise id="t-conv-rl" src={{ p: 21 }} num="RL" topic="Slides, aula 3"
+      <Exercise id="t-conv-rl" review={['integrais', 'exp-log']} src={{ p: 21 }} num="RL" topic="Slides, aula 3"
         hint={<p>Separe em dois intervalos: enquanto <M>{'t<2'}</M> o pulso ainda está "ligado"; para <M>{'t\\ge 2'}</M> a integral só vai até <M>{'\\tau = 2'}</M>.</p>}
         steps={[
           { title: 'Montar a integral', body: <MM>{String.raw`y(t)=\int_0^t 2e^{-2(t-\tau)}\,u(\tau)\,d\tau`}</MM> },

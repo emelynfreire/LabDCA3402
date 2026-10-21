@@ -25,7 +25,7 @@ export default function Fluidicos() {
       <MM>{String.raw`\begin{cases}A_1\dot h_1=q_{in}-\dfrac{h_1-h_2}{R_1}\\[6pt] A_2\dot h_2=\dfrac{h_1-h_2}{R_1}-\dfrac{h_2}{R_2}\end{cases}\Rightarrow\ \frac{H_2(s)}{Q_{in}(s)}=\frac{R_2}{A_1A_2R_1R_2s^2+(A_1R_1+A_2R_2+A_1R_2)s+1}`}</MM>
       <p>O termo extra <M>{'A_1R_2'}</M> no coeficiente de <M>s</M> é o efeito da interação: os polos deixam de ser <M>{'-1/(A_1R_1)'}</M> e <M>{'-1/(A_2R_2)'}</M>.</p>
 
-      <Exercise id="t-u3-fl" num="Ex." topic="Espaço de estados de dois tanques interativos"
+      <Exercise id="t-u3-fl" review={['matrizes', 'determinante']} num="Ex." topic="Espaço de estados de dois tanques interativos"
         steps={[
           { title: 'Estados e entrada', body: <p><M>{'x_1=h_1'}</M>, <M>{'x_2=h_2'}</M>, <M>{'u=q_{in}'}</M>, <M>{'y=h_2'}</M>.</p> },
           { title: 'Matrizes', body: <MM>{String.raw`A=\begin{bmatrix}-\frac{1}{A_1R_1}&\frac{1}{A_1R_1}\\[3pt]\frac{1}{A_2R_1}&-\frac{1}{A_2R_1}-\frac{1}{A_2R_2}\end{bmatrix},\quad B=\begin{bmatrix}\frac1{A_1}\\0\end{bmatrix},\quad C=\begin{bmatrix}0&1\end{bmatrix}`}</MM> },

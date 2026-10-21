@@ -5,8 +5,22 @@ export const course = {
   turma: 'T02 · 2026.2',
   professor: 'Prof. Anderson Luiz de Oliveira Cavalcanti',
   dept: 'Departamento de Engenharia de Computação e Automação (DCA) · UFRN',
-  autora: 'Emelyn Freire',
+  autora: 'Emelyn Clementino Freire',
+  autoraGithub: 'https://github.com/emelynfreire',
+  repo: 'https://github.com/emelynfreire/LabDCA3402',
+  site: 'https://emelynfreire.github.io/LabDCA3402/',
+  titulo: 'LabDCA3402',
+  subtitulo: 'plataforma de estudos de Modelagem e Análise Linear de Sistemas',
+  ano: 2026,
 }
+
+// Bibliografia da disciplina (plano de curso), usada em Sobre e em Como citar.
+export const BIBLIO = [
+  'LATHI, B. P. <i>Linear Systems and Signals</i>. 2. ed. Oxford: Oxford University Press, 2005.',
+  'MEDEIROS, A. A. D. <i>Apostila de Modelagem e Análise de Sistemas Dinâmicos</i>. Natal: UFRN, 2003.',
+  'CAMPOS, M. C. M. M.; TEIXEIRA, H. <i>Controles típicos de equipamentos e processos industriais</i>. São Paulo: Blucher, 2015.',
+  'DÓREA, C. E. T. <i>Enciclopédia de Automática: Controle e Automação</i>. v. 1. 2007.',
+]
 
 export const units = [
   {

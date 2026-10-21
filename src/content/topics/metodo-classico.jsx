@@ -52,7 +52,7 @@ export default function MetodoClassico() {
         </ol>
       </Callout>
 
-      <Exercise id="t-mc-1" src={{ p: 25 }} num="1" topic="Slides, aula 5 — raízes reais distintas"
+      <Exercise id="t-mc-1" review={['sistemas-lineares']} src={{ p: 25 }} num="1" topic="Slides, aula 5 — raízes reais distintas"
         steps={[
           { title: 'Homogênea', body: <p><M>{'s^2+5s+6=(s+2)(s+3)'}</M> ⇒ <M>{'y_h=C_1e^{-2t}+C_2e^{-3t}'}</M>.</p> },
           { title: 'Particular', body: <p>Entrada constante: <M>{'6\\beta=12\\cdot 2'}</M> ⇒ <M>{'y_p=4'}</M>.</p> },
@@ -62,7 +62,7 @@ export default function MetodoClassico() {
         <p>Resolva <M>{'\\ddot y+5\\dot y+6y=12u(t)'}</M>, com <M>{'u(t)=2,\\ t\\ge0'}</M>, <M>{'y(0)=1'}</M> e <M>{'\\dot y(0)=-1'}</M>.</p>
       </Exercise>
 
-      <Exercise id="t-mc-2" src={{ p: 26 }} num="2" topic="Slides, aula 5 — raiz dupla"
+      <Exercise id="t-mc-2" review={['derivadas', 'sistemas-lineares']} src={{ p: 26 }} num="2" topic="Slides, aula 5 — raiz dupla"
         steps={[
           { title: 'Homogênea', body: <p><M>{'(s+2)^2'}</M> ⇒ <M>{'y_h=D_0te^{-2t}+D_1e^{-2t}'}</M>.</p> },
           { title: 'Particular', body: <p><M>{'y_p=0{,}56e^{3t}'}</M> (calculada acima).</p> },
@@ -73,7 +73,7 @@ export default function MetodoClassico() {
         <p>Resolva <M>{'\\ddot y+4\\dot y+4y=2\\dot u+8u'}</M>, com <M>{'u(t)=e^{3t}'}</M>, <M>{'y(0)=-1'}</M>, <M>{'\\dot y(0)=1'}</M>.</p>
       </Exercise>
 
-      <Exercise id="t-mc-3" src={{ p: [27, 28] }} num="3" topic="Slides, aula 5 — raízes complexas"
+      <Exercise id="t-mc-3" review={['derivadas', 'complexos', 'trigonometria']} src={{ p: [27, 28] }} num="3" topic="Slides, aula 5 — raízes complexas"
         steps={[
           { title: 'Forma da solução', body: <MM>{'y(t)=e^{t}+C_1e^{-2t}\\sen 3t+C_2e^{-2t}\\cos 3t'}</MM> },
           { title: 'y(0) = 0', body: <p><M>{'0=1+C_2\\Rightarrow C_2=-1'}</M>.</p> },

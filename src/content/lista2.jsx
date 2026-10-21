@@ -27,7 +27,7 @@ export default function Lista2() {
       <Formulario />
 
       <h2>Parte 1 — Sistemas de 1ª ordem</h2>
-      <Exercise id="l2-1" src={{ file: 'lista-2.pdf', p: 1, label: 'enunciado: Lista 2, p. 1' }} num="1" topic="1ª ordem"
+      <Exercise id="l2-1" review={['exp-log', 'limites']} src={{ file: 'lista-2.pdf', p: 1, label: 'enunciado: Lista 2, p. 1' }} num="1" topic="1ª ordem"
         steps={[
           s('Forma padrão', <p><M>{String.raw`G=\frac{4}{2s+1}`}</M> já está na forma <M>{String.raw`\frac{K}{Ts+1}`}</M>: <M>K=4</M>, <M>T=2</M> s; polo em <M>{'s=-1/T=-0{,}5'}</M>.</p>),
           s('Resposta ao degrau', <MM>{String.raw`Y(s)=\frac{4}{s(2s+1)}=\frac4s-\frac{4}{s+0{,}5}\ \Rightarrow\ y(t)=4\left(1-e^{-t/2}\right)`}</MM>),
@@ -37,7 +37,7 @@ export default function Lista2() {
         <p>Para <M>{String.raw`G(s)=\frac{4}{2s+1}`}</M>: (a) ganho estático, polo e constante de tempo; (b) resposta ao degrau unitário; (c) valor final; (d) tempo de estabilização pelos critérios de 2% e 5%.</p>
       </Exercise>
 
-      <Exercise id="l2-2" src={{ file: 'lista-2.pdf', p: 1, label: 'enunciado: Lista 2, p. 1' }} num="2" topic="Identificação de 1ª ordem a partir do gráfico"
+      <Exercise id="l2-2" review={['exp-log']} src={{ file: 'lista-2.pdf', p: 1, label: 'enunciado: Lista 2, p. 1' }} num="2" topic="Identificação de 1ª ordem a partir do gráfico"
         hint={<p>Trabalhe com as <b>variações</b>: ΔΘ e ΔV. A constante de tempo é medida a partir do instante do degrau.</p>}
         steps={[
           s('Ganho', <p><M>{String.raw`K=\frac{\Delta\Theta}{\Delta V}=\frac{35-25}{40-0}=0{,}25\ ^\circ\text{C/V}`}</M>.</p>),
@@ -50,7 +50,7 @@ export default function Lista2() {
       </Exercise>
 
       <h2>Parte 2 — Sistemas de 2ª ordem: caracterização</h2>
-      <Exercise id="l2-3" src={{ file: 'lista-2.pdf', p: 2, label: 'enunciado: Lista 2, p. 2' }} num="3" topic="Parâmetros e especificações"
+      <Exercise id="l2-3" review={['polinomios', 'exp-log', 'trigonometria']} src={{ file: 'lista-2.pdf', p: 2, label: 'enunciado: Lista 2, p. 2' }} num="3" topic="Parâmetros e especificações"
         steps={[
           s('Comparar com a forma canônica', <p><M>{'\\omega_n^2=25\\Rightarrow\\omega_n=5'}</M>; <M>{'2\\xi\\omega_n=6\\Rightarrow\\xi=0{,}6'}</M> ⇒ subamortecido.</p>),
           s('ωd e polos', <p><M>{String.raw`\omega_d=5\sqrt{1-0{,}36}=4`}</M>; polos <M>{'-\\xi\\omega_n\\pm j\\omega_d=-3\\pm j4'}</M>.</p>),
@@ -61,7 +61,7 @@ export default function Lista2() {
         <p>Dado <M>{String.raw`G(s)=\frac{25}{s^2+6s+25}`}</M>, determine <M>{'\\omega_n'}</M>, <M>{'\\xi'}</M>, <M>{'\\omega_d'}</M>, os polos, a classificação e, para o degrau, <M>{'M_p'}</M>, <M>{'t_p'}</M>, <M>{'t_r'}</M> e <M>{'t_{ss}'}</M> (2%).</p>
       </Exercise>
 
-      <Exercise id="l2-4" src={{ file: 'lista-2.pdf', p: 2, label: 'enunciado: Lista 2, p. 2' }} num="4" topic="Classificação pelo amortecimento"
+      <Exercise id="l2-4" review={['polinomios']} src={{ file: 'lista-2.pdf', p: 2, label: 'enunciado: Lista 2, p. 2' }} num="4" topic="Classificação pelo amortecimento"
         steps={[
           s('ωn comum', <p>Nos três, <M>{'\\omega_n^2=16\\Rightarrow\\omega_n=4'}</M>, e <M>{'\\xi=\\frac{\\text{coef. de }s}{2\\cdot4}'}</M>.</p>),
           s('(a)', <p><M>{'\\xi=10/8=1{,}25>1'}</M>: sobreamortecido; <M>{'s^2+10s+16=(s+2)(s+8)'}</M>.</p>),
@@ -72,7 +72,7 @@ export default function Lista2() {
         <p>Classifique e indique os polos: (a) <M>{String.raw`\frac{16}{s^2+10s+16}`}</M>; (b) <M>{String.raw`\frac{16}{s^2+8s+16}`}</M>; (c) <M>{String.raw`\frac{16}{s^2+4s+16}`}</M>.</p>
       </Exercise>
 
-      <Exercise id="l2-5" src={{ file: 'lista-2.pdf', p: 2, label: 'enunciado: Lista 2, p. 2' }} num="5" topic="FT a partir dos polos"
+      <Exercise id="l2-5" review={['polinomios', 'complexos']} src={{ file: 'lista-2.pdf', p: 2, label: 'enunciado: Lista 2, p. 2' }} num="5" topic="FT a partir dos polos"
         steps={[
           s('Denominador', <p><M>{'(s+2-j4)(s+2+j4)=(s+2)^2+16=s^2+4s+20'}</M>.</p>),
           s('Ganho unitário', <p>Sem zeros e <M>{'G(0)=1'}</M>: numerador 20 ⇒ <M>{String.raw`G=\frac{20}{s^2+4s+20}`}</M>.</p>),
@@ -84,7 +84,7 @@ export default function Lista2() {
       </Exercise>
 
       <h2>Parte 3 — Projeto por especificações</h2>
-      <Exercise id="l2-6" src={{ file: 'lista-2.pdf', p: 2, label: 'enunciado: Lista 2, p. 2' }} num="6" topic="Malha fechada com polo instável em malha aberta"
+      <Exercise id="l2-6" review={['fracoes', 'polinomios', 'exp-log']} src={{ file: 'lista-2.pdf', p: 2, label: 'enunciado: Lista 2, p. 2' }} num="6" topic="Malha fechada com polo instável em malha aberta"
         steps={[
           s('Malha fechada', <MM>{String.raw`T(s)=\frac{K}{(s+a)(s-1)+K}=\frac{K}{s^2+(a-1)s+(K-a)}`}</MM>),
           s('(a) Valores numéricos', <p><M>{'s^2+0{,}6s+16'}</M>: <M>{'\\omega_n=4'}</M>, <M>{'\\xi=0{,}6/8=0{,}075'}</M> ⇒ <M>{String.raw`M_p=e^{-0{,}075\pi/\sqrt{1-0{,}075^2}}\approx79\%`}</M>.</p>),
@@ -94,7 +94,7 @@ export default function Lista2() {
         <p>Malha fechada com realimentação unitária e <M>{String.raw`G(s)=\frac{K}{(s+a)(s-1)}`}</M>. (a) Para <M>{'K=17{,}6'}</M> e <M>{'a=1{,}6'}</M>, determine <M>{'\\omega_n'}</M>, <M>{'\\xi'}</M> e <M>{'M_p'}</M>. (b) Mantendo <M>a</M>, como reajustar <M>K</M> para diminuir o sobressinal? Qual o efeito no tempo de subida?</p>
       </Exercise>
 
-      <Exercise id="l2-7" src={{ file: 'lista-2.pdf', p: 2, label: 'enunciado: Lista 2, p. 2' }} num="7" topic="Faixa de ganho por especificações"
+      <Exercise id="l2-7" review={['exp-log', 'polinomios']} src={{ file: 'lista-2.pdf', p: 2, label: 'enunciado: Lista 2, p. 2' }} num="7" topic="Faixa de ganho por especificações"
         steps={[
           s('Malha fechada', <MM>{String.raw`T(s)=\frac{K_p}{s^2+4s+(3+K_p)}\ \Rightarrow\ \omega_n=\sqrt{3+K_p},\ \ \xi=\frac{2}{\omega_n}`}</MM>),
           s('Subamortecido', <p><M>{'\\xi<1\\Rightarrow\\omega_n>2\\Rightarrow K_p>1'}</M>.</p>),
@@ -106,7 +106,7 @@ export default function Lista2() {
         <p>Com realimentação unitária, <M>{'K_p'}</M> em série com <M>{String.raw`\frac{1}{s^2+4s+3}`}</M>. Deseja-se resposta subamortecida com <M>{'M_p\\le16\\%'}</M> e <M>{'t_r\\le1{,}8'}</M> s (adote <M>{'t_r\\approx1{,}8/\\omega_n'}</M>). (a) Faixa de <M>{'K_p'}</M>. (b) Qual <M>{'K_p'}</M> dá o menor tempo de estabilização?</p>
       </Exercise>
 
-      <Exercise id="l2-8" src={{ file: 'lista-2.pdf', p: 2, label: 'enunciado: Lista 2, p. 2' }} num="8" topic="Projeto de g e p (Exemplo ilustrativo 9)"
+      <Exercise id="l2-8" review={['exp-log', 'sistemas-lineares']} src={{ file: 'lista-2.pdf', p: 2, label: 'enunciado: Lista 2, p. 2' }} num="8" topic="Projeto de g e p (Exemplo ilustrativo 9)"
         steps={[
           s('Malha fechada', <p><M>{String.raw`\frac{g}{s^2+ps+g}`}</M> ⇒ <M>{String.raw`\omega_n=\sqrt g`}</M>, <M>{String.raw`\xi=\frac{p}{2\sqrt g}`}</M>.</p>),
           s('Sobressinal', <p><M>{'M_p<5\\%\\Rightarrow\\xi>0{,}69'}</M>; o menor <M>{'\\xi'}</M> admissível dá o menor <M>{'t_r'}</M>: <M>{'\\xi=0{,}7'}</M>.</p>),
@@ -117,7 +117,7 @@ export default function Lista2() {
         <p>Com realimentação unitária e <M>{String.raw`G=\frac{g}{s(s+p)}`}</M>, determine <M>g</M> e <M>p</M> para: sobressinal &lt; 5%; <M>{'t_{ss}<4'}</M> s (2%); e, atendidas essas, o menor <M>{'t_r'}</M> com o menor <M>g</M>.</p>
       </Exercise>
 
-      <Exercise id="l2-9" src={{ file: 'lista-2.pdf', p: 2, label: 'enunciado: Lista 2, p. 2' }} num="9" topic="Realimentação de velocidade"
+      <Exercise id="l2-9" review={['fracoes', 'exp-log', 'sistemas-lineares']} src={{ file: 'lista-2.pdf', p: 2, label: 'enunciado: Lista 2, p. 2' }} num="9" topic="Realimentação de velocidade"
         steps={[
           s('Malha interna', <MM>{String.raw`\frac{G_p}{1+K_rG_p}=\frac{100}{0{,}2s+1+100K_r}=\frac{500}{s+5+500K_r}`}</MM>),
           s('Com o integrador', <MM>{String.raw`\frac{500}{s+5+500K_r}\cdot\frac{1}{20s}=\frac{25}{s(s+5+500K_r)}`}</MM>),
@@ -130,7 +130,7 @@ export default function Lista2() {
       </Exercise>
 
       <h2>Parte 4 — Alocação de polos com realimentação</h2>
-      <Exercise id="l2-10" src={{ file: 'lista-2.pdf', p: 3, label: 'enunciado: Lista 2, p. 3' }} num="10" topic="Dois polos em −10"
+      <Exercise id="l2-10" review={['sistemas-lineares', 'fracoes']} src={{ file: 'lista-2.pdf', p: 3, label: 'enunciado: Lista 2, p. 3' }} num="10" topic="Dois polos em −10"
         steps={[
           s('Sinais', <p>Seja <M>V</M> o sinal antes do integrador: <M>{String.raw`V=\frac{k_1}{s+1}E`}</M>, <M>{String.raw`C=\frac Vs\Rightarrow V=sC`}</M>, e <M>{'E=R-(C+k_2V)=R-C(1+k_2s)'}</M>.</p>),
           s('Equação característica', <MM>{String.raw`s(s+1)C=k_1\left[R-C(1+k_2s)\right]\ \Rightarrow\ \frac CR=\frac{k_1}{s^2+(1+k_1k_2)s+k_1}`}</MM>),
@@ -139,7 +139,7 @@ export default function Lista2() {
         answer={<p><M>{'k_1=100'}</M>, <M>{'k_2=0{,}19'}</M>.</p>}>
         <p>Determine <M>{'k_1'}</M> e <M>{'k_2'}</M> para que a malha fechada tenha dois polos em <M>{'s=-10'}</M>. O caminho direto é <M>{String.raw`\frac{k_1}{s+1}`}</M> seguido de <M>{String.raw`\frac1s`}</M>; o ramo <M>{'k_2'}</M> realimenta o sinal antes do integrador, somado à realimentação unitária da saída.</p>
       </Exercise>
-      <Exercise id="l2-11" src={{ file: 'lista-2.pdf', p: 3, label: 'enunciado: Lista 2, p. 3' }} num="11" topic="Duas realimentações negativas"
+      <Exercise id="l2-11" review={['fracoes', 'polinomios']} src={{ file: 'lista-2.pdf', p: 3, label: 'enunciado: Lista 2, p. 3' }} num="11" topic="Duas realimentações negativas"
         steps={[
           s('Malha interna', <MM>{String.raw`\frac{G_2}{1+G_2},\quad G_2=\frac{K}{0{,}5s+1}`}</MM>),
           s('Malha externa', <MM>{String.raw`\frac YU=\frac{G_1G_2}{1+G_2+G_1G_2},\quad G_1=\frac{1}{0{,}2s+1}`}</MM>),
@@ -151,7 +151,7 @@ export default function Lista2() {
       </Exercise>
 
       <h2>Parte 5 — Polos dominantes</h2>
-      <Exercise id="l2-12" src={{ file: 'lista-2.pdf', p: 3, label: 'enunciado: Lista 2, p. 3' }} num="12" topic="Adequação da aproximação"
+      <Exercise id="l2-12" review={['polinomios', 'complexos']} src={{ file: 'lista-2.pdf', p: 3, label: 'enunciado: Lista 2, p. 3' }} num="12" topic="Adequação da aproximação"
         steps={[
           s('Polos', <p><M>{'G_1'}</M>: −6 e <M>{'-1\\pm j\\sqrt3'}</M> (razão das partes reais 6 : 1). <M>{'G_2'}</M>: −1,5 e <M>{'-1\\pm j\\sqrt3'}</M> (1,5 : 1).</p>),
           s('Conclusão', <p>Para <M>{'G_1'}</M> a aproximação é adequada; para <M>{'G_2'}</M> não, pois o polo real está próximo dos dominantes.</p>),
@@ -162,7 +162,7 @@ export default function Lista2() {
           <Plot height={170} xRange={[0, 7]} series={[{ ...g1a, color: 'var(--ink-3)', dash: '5 4', label: 'aproximação' }, { ...g1, color: 'var(--pen)', label: 'G₁' }, { ...g2, color: 'var(--pole)', label: 'G₂' }]} hLines={[{ y: 1 }]} yLabel="y(t)" /></>}>
         <p>Para <M>{String.raw`G_1=\frac{24}{(s+6)(s^2+2s+4)}`}</M> e <M>{String.raw`G_2=\frac{6}{(s+1{,}5)(s^2+2s+4)}`}</M>: (a) identifique os polos e justifique se a aproximação de 2ª ordem é adequada; (b) escreva a aproximação preservando o ganho estático; (c) estime <M>{'\\omega_n'}</M>, <M>{'\\xi'}</M>, <M>{'M_p'}</M> e <M>{'t_p'}</M>.</p>
       </Exercise>
-      <Exercise id="l2-13" src={{ file: 'lista-2.pdf', p: 3, label: 'enunciado: Lista 2, p. 3' }} num="13" topic="Polos dominantes de 3ª ordem"
+      <Exercise id="l2-13" review={['polinomios', 'exp-log']} src={{ file: 'lista-2.pdf', p: 3, label: 'enunciado: Lista 2, p. 3' }} num="13" topic="Polos dominantes de 3ª ordem"
         steps={[
           s('Polos', <p><M>{'s^2+2s+5=0\\Rightarrow-1\\pm j2'}</M> (dominantes) e <M>{'-10'}</M>, dez vezes mais afastado do eixo imaginário: sua exponencial decai muito mais rápido.</p>),
           s('Aproximação', <p>Dividindo por 10 para manter <M>{'G(0)=1'}</M>: <M>{String.raw`G\approx\frac{5}{s^2+2s+5}`}</M>.</p>),

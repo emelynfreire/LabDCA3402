@@ -75,12 +75,14 @@ export default function Home() {
             <li>Leia o tópico e mexa nas simulações antes de ver as fórmulas: tente prever o que vai acontecer.</li>
             <li>Na lista, tente resolver cada questão sozinho. Peça um passo de cada vez só quando travar.</li>
             <li>Faça o quiz da unidade. Ele indica quais tópicos revisar.</li>
+            <li>Travou numa conta de Cálculo, Álgebra ou Álgebra Linear? Cada exercício tem botões “Revisar o básico” que abrem a revisão ali mesmo. Todas estão em <Link to="/revisao">Revisão de pré-requisitos</Link>.</li>
+            <li>Na dúvida sobre qual caminho seguir numa questão, siga o <Link to="/fluxos">fluxograma do método</Link> no modo guiado.</li>
             <li>Marque os tópicos estudados: o progresso fica salvo neste navegador.</li>
           </ol>
           <p><Link to="/laboratorio">Abrir o laboratório com todas as simulações</Link> · <Link to="/formulario">Formulário</Link></p>
         </div>
       </section>
-      <p className="credit">Plataforma criada por iniciativa de {course.autora}, com o objetivo de contribuir para reduzir a reprovação na disciplina e tornar o estudo mais ativo. <Link to="/sobre">Conheça a motivação</Link>. Slides e listas disponibilizados com autorização do {course.professor}.</p>
+      <p className="credit">Plataforma criada por iniciativa de {course.autora}, com o objetivo de contribuir para reduzir a reprovação na disciplina e tornar o estudo mais ativo. <Link to="/sobre">Conheça a motivação</Link>. Slides e listas disponibilizados com autorização do {course.professor}. Código aberto no <a href={course.repo} target="_blank" rel="noreferrer">GitHub</a>; se usar em algum trabalho, veja <Link to="/citar">como citar</Link>.</p>
     </div>
   )
 }

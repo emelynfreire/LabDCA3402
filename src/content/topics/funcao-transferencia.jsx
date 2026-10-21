@@ -29,7 +29,7 @@ export default function FuncaoTransferencia() {
 
       <h2>Polos e zeros<Slide p={13} /></h2>
       <p>Polos são as raízes de <M>A(s)</M> (<M>{'|G(p)|=\\infty'}</M>); zeros são as raízes de <M>B(s)</M> (<M>{'G(z)=0'}</M>).</p>
-      <Exercise id="t-ft-circ" src={{ p: [14, 16] }} num="Ex." topic="Slides, aula 8 — FT de um circuito"
+      <Exercise id="t-ft-circ" review={['fracoes']} src={{ p: [14, 16] }} num="Ex." topic="Slides, aula 8 — FT de um circuito"
         steps={[
           { title: 'Equações do circuito', body: <><p>Malha: <M>{'u=2{,}5y+\\dot y+v'}</M>. Nó (capacitor de 1 F em paralelo com 2 Ω): <M>{'y=\\frac{v}{2}+\\dot v'}</M>.</p></> },
           { title: 'Laplace com CI nulas', body: <MM>{String.raw`U=(s+2{,}5)Y+V,\qquad Y=(s+0{,}5)V\ \Rightarrow\ V=\frac{Y}{s+0{,}5}`}</MM> },
@@ -53,6 +53,8 @@ export default function FuncaoTransferencia() {
 
       <SimSlot name="poles" initial="reais" />
 
+      <p>Na simulação abaixo, a resposta é separada nos termos de cada polo, como nas frações parciais: veja cada termo e a soma.</p>
+      <SimSlot name="modal" />
       <h2>Relação entre polos e resposta<Slide p={29} /></h2>
       <p>Em geral, a resposta de um SLIT é composta de um termo associado à entrada e de uma combinação linear de termos associados aos polos de <M>G(s)</M>:</p>
       <ul>

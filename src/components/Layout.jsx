@@ -48,8 +48,11 @@ function Nav({ onNavigate }) {
       ))}
       <ul className="nav-list nav-extra">
         <li><NavLink to="/laboratorio"><span className="idx">◎</span><span>Laboratório de simulações</span><span /></NavLink></li>
+        <li><NavLink to="/fluxos"><span className="idx">⇣</span><span>Fluxogramas dos métodos</span><span /></NavLink></li>
+        <li><NavLink to="/revisao"><span className="idx">↺</span><span>Revisão de Cálculo e Álgebra Linear</span><span /></NavLink></li>
         <li><NavLink to="/formulario"><span className="idx">∑</span><span>Formulário e tabelas</span><span /></NavLink></li>
         <li><NavLink to="/sobre"><span className="idx">i</span><span>Sobre a plataforma</span><span /></NavLink></li>
+        <li><NavLink to="/citar"><span className="idx">“</span><span>Como citar e contribuir</span><span /></NavLink></li>
       </ul>
     </nav>
   )
@@ -69,7 +72,7 @@ export default function Layout({ children }) {
       <aside className={'sidebar' + (open ? ' open' : '')}>
         <Nav />
         <ThemeSwitch />
-        <p className="sidebar-credit">Uma iniciativa de <a href="https://github.com/emelynfreire">{course.autora}</a></p>
+        <p className="sidebar-credit">Uma iniciativa de <a href={course.autoraGithub} target="_blank" rel="noreferrer">{course.autora}</a> · <a href={course.repo} target="_blank" rel="noreferrer">contribua no GitHub</a></p>
       </aside>
       <main className="main" id="conteudo">{children}</main>
     </div>

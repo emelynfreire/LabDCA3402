@@ -30,6 +30,8 @@ export default function RegimeTransitorio() {
           <tr><td><M>{'\\xi=1'}</M> criticamente amortecido</td><td><M>{'p_1=p_2=-\\omega_n'}</M></td><td><M>{'y=1-e^{-\\omega_nt}(1+\\omega_nt)'}</M></td></tr>
           <tr><td><M>{'\\xi<1'}</M> subamortecido</td><td><M>{String.raw`-\xi\omega_n\pm j\omega_d,\ \ \omega_d=\omega_n\sqrt{1-\xi^2}`}</M></td><td><M>{String.raw`y=1-e^{-\xi\omega_nt}\left(\cos\omega_dt+\frac{\xi}{\sqrt{1-\xi^2}}\sen\omega_dt\right)`}</M></td></tr>
         </tbody></table></div>
+      <p>Os três casos são exatamente os três sinais do discriminante de <M>{'s^2+2\\xi\\omega_ns+\\omega_n^2'}</M>: </p>
+      <SimSlot name="bhaskara" />
       <p><M>{'\\omega_d'}</M> é a <b>frequência natural amortecida</b>, a frequência da oscilação da saída. A forma subamortecida também se escreve <M>{String.raw`y=1-\frac{e^{-\xi\omega_nt}}{\sqrt{1-\xi^2}}\sen\!\left(\omega_dt+\tan^{-1}\frac{\sqrt{1-\xi^2}}{\xi}\right)`}</M>.</p>
       <ul>
         <li><b>Sobreamortecido</b>: quanto maior <M>{'\\xi'}</M>, mais o termo do polo mais rápido se torna desprezível; para <M>{'\\xi\\ge1{,}2'}</M> aproxima-se por 1ª ordem, <M>{String.raw`G\simeq\frac{-p_1}{s-p_1}`}</M>, com <M>{'t_{ss}\\simeq 3/|p_1|'}</M> (5%) ou <M>{'4/|p_1|'}</M> (2%).</li>
@@ -50,7 +52,7 @@ export default function RegimeTransitorio() {
 
       <SimSlot name="segunda" />
 
-      <Exercise id="t-rt-9" src={{ p: [25, 27] }} num="9" topic="Exemplo ilustrativo 9 dos slides"
+      <Exercise id="t-rt-9" review={['exp-log']} src={{ p: [25, 27] }} num="9" topic="Exemplo ilustrativo 9 dos slides"
         steps={[
           { title: 'Malha fechada', body: <MM>{String.raw`G_{MF}=\frac{g}{s(s+p)+g}=\frac{g}{s^2+ps+g}\ \Rightarrow\ \omega_n=\sqrt g,\ \ \xi=\frac{p}{2\sqrt g}`}</MM> },
           { title: 'Sobressinal < 5%', body: <p><M>{String.raw`e^{-\xi\pi/\sqrt{1-\xi^2}}<0{,}05\Rightarrow\xi>0{,}69`}</M>. Como <M>{'t_r'}</M> aumenta com <M>{'\\xi'}</M>, para a subida mais rápida usa-se o menor valor possível: <M>{'\\xi=0{,}7'}</M>.</p> },
@@ -75,7 +77,7 @@ export default function RegimeTransitorio() {
       <h2>Sistemas de ordem superior: polos dominantes<Slide p={[32, 33]} /></h2>
       <p>Quando os polos têm partes reais bem distintas, o comportamento é dominado pelos polos mais próximos do eixo imaginário (<b>polos dominantes</b>), cuja constante de tempo é maior e gera transitórios mais duradouros. Os demais podem ser desprezados, preservando o ganho estático:</p>
       <MM>{String.raw`G(s)=\frac{K}{(s+p_1)(s+p_2)(s+p_3)(s+p_4)}\simeq\frac{K}{p_2p_3p_4\,(s+p_1)}`}</MM>
-      <Exercise id="t-rt-10" src={{ p: [34, 35] }} num="10" topic="Exemplo ilustrativo 10 dos slides"
+      <Exercise id="t-rt-10" review={['polinomios', 'complexos']} src={{ p: [34, 35] }} num="10" topic="Exemplo ilustrativo 10 dos slides"
         steps={[
           { title: 'Polos', body: <p><M>{'G_1'}</M>: <M>{'-6'}</M> e <M>{'-1\\pm j\\sqrt3'}</M>. <M>{'G_2'}</M>: <M>{'-1{,}5'}</M> e <M>{'-1\\pm j\\sqrt3'}</M>.</p> },
           { title: 'Razão das partes reais', body: <p><M>{'G_1'}</M>: 1 : 6, o polo real decai seis vezes mais rápido — boa aproximação. <M>{'G_2'}</M>: 1 : 1,5 — o polo real é quase tão lento quanto os complexos.</p> },

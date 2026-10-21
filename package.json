@@ -2,6 +2,9 @@
   "name": "plataforma-dca3402",
   "private": true,
   "version": "1.0.0",
+  "license": "MIT",
+  "author": "Emelyn Clementino Freire (https://github.com/emelynfreire)",
+  "repository": "github:emelynfreire/LabDCA3402",
   "type": "module",
   "description": "Plataforma de estudos de DCA3402 – Modelagem e Análise Linear de Sistemas (UFRN)",
   "scripts": {
