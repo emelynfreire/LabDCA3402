@@ -7,11 +7,11 @@ export default function Sobre() {
   return (
     <div className="page">
       <header className="page-head">
-        <div className="kicker">{course.code} · {course.turma}</div>
+        <div className="kicker">Plataforma de estudos</div>
         <h1>Sobre a plataforma</h1>
       </header>
       <h2>Iniciativa</h2>
-      <p>Esta plataforma é uma iniciativa de <b>{course.autora}</b>, criada para a disciplina {course.code} – {course.name}, do {course.dept}, ministrada pelo {course.professor}.</p>
+      <p>Esta plataforma de estudos é uma iniciativa independente de <b>{course.autora}</b>. O conteúdo tem como base a disciplina {course.code} – {course.name}, do {course.dept}, e usa os slides e as listas do {course.professor}, com a autorização dele.</p>
 
       <h2>Motivação</h2>
       <p>A disciplina reúne muitos conceitos abstratos — convolução, plano s, polos e zeros, espaço de estados — que costumam ficar mais claros quando dá para <i>ver</i> o que acontece. A plataforma foi pensada com três objetivos:</p>
@@ -20,7 +20,7 @@ export default function Sobre() {
         <li><b>Tornar o aluno mais ativo no próprio aprendizado</b>: em vez de só ler, ele mexe nos parâmetros, prevê o resultado, confere nas simulações e se testa.</li>
         <li><b>Mostrar em 3D o que acontece nos circuitos, nos estados e nas transformações</b>, porque visualizar a dinâmica é parte central de entendê-la.</li>
       </ul>
-      <p>É um material aberto: qualquer estudante pode usá-lo, e o código fica no GitHub para que outras turmas também aproveitem.</p>
+      <p>É um material aberto: qualquer estudante pode usá-lo, e o código fica no GitHub para que outros estudantes também aproveitem.</p>
 
       <h2>Autoria e contribuição</h2>
       <ul>
@@ -34,7 +34,7 @@ export default function Sobre() {
         <li>Os textos das Unidades 1 e 2 resumem os slides e as listas do professor, que autorizou a disponibilização do material. Os PDFs estão no site e cada seção cita a página correspondente (“slides, p. N”), para facilitar a conferência.</li>
         <li>Os gabaritos das listas foram conferidos por cálculo simbólico.</li>
         <li>As simulações reproduzem, de forma interativa, as sugestões de simulação em MATLAB dos slides, além de visualizações 3D criadas para esta plataforma.</li>
-        <li>O material da Unidade 3 ainda será disponibilizado pelo professor; até lá, os tópicos dessa unidade trazem uma prévia baseada na bibliografia da disciplina.</li>
+        <li>Os slides da Unidade 3 ainda não foram incorporados à plataforma; por enquanto, os tópicos dessa unidade trazem uma prévia baseada na bibliografia da disciplina.</li>
       </ul>
       <div className="warn"><span className="tag">Material de apoio, não oficial</span>A plataforma não substitui as aulas nem as orientações do professor. Em caso de divergência, vale o que foi apresentado em sala. Encontrou um erro? Abra uma <a href={`${course.repo}/issues`} target="_blank" rel="noreferrer">issue no repositório do GitHub</a>.</div>
       <h2>Referências</h2>

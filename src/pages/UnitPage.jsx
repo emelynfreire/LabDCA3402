@@ -1,5 +1,5 @@
 import { Link, useParams } from 'react-router-dom'
-import { units, topicsOf, brDate } from '../content/course.js'
+import { units, topicsOf } from '../content/course.js'
 import { useProgress } from '../components/progress.jsx'
 import { SIMS } from '../sims/registry.jsx'
 import { pdfUrl } from '../components/SlideRef.jsx'
@@ -13,20 +13,19 @@ export default function UnitPage() {
   return (
     <div className="page">
       <header className="page-head">
-        <div className="kicker">{u.title}{u.exam ? ` · ${u.exam.label} em ${brDate(u.exam.date)}` : ''}</div>
+        <div className="kicker">{u.title}</div>
         <h1>{u.name}</h1>
         <p className="lead">{u.summary}</p>
       </header>
-      {u.preview && <div className="warn"><span className="tag">Material ainda não disponibilizado</span>O professor ainda vai disponibilizar o material desta unidade. Até lá, os textos daqui são uma prévia baseada na bibliografia da disciplina e serão revistos com os slides.</div>}
+      {u.preview && <div className="warn"><span className="tag">Conteúdo prévio</span>Os slides desta unidade ainda não foram incorporados à plataforma. Por enquanto, os textos daqui são uma prévia baseada na bibliografia da disciplina e serão revistos com os slides.</div>}
       <h2>Tópicos</h2>
       <table className="tbl">
-        <thead><tr><th>#</th><th>Tópico</th><th>Aula</th><th>Simulações</th><th>Status</th></tr></thead>
+        <thead><tr><th>#</th><th>Tópico</th><th>Simulações</th><th>Status</th></tr></thead>
         <tbody>
           {ts.map((t) => (
             <tr key={t.id}>
               <td className="num">{t.n}</td>
               <td><Link to={`/topico/${t.id}`}>{t.title}</Link></td>
-              <td className="num">{brDate(t.date)}</td>
               <td className="small">{Object.values(SIMS).filter((s) => s.topic === t.id).map((s) => s.title).join(', ') || '—'}</td>
               <td>{done[t.id] ? <span style={{ color: 'var(--good)' }}>estudado</span> : <span className="muted">a estudar</span>}</td>
             </tr>

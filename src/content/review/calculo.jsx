@@ -84,7 +84,7 @@ export function Limites() {
 export function Taylor() {
   return (
     <>
-      <Usos>Linearização de sistemas (aula de 22/09): tanque, pêndulo, qualquer modelo não linear perto de um ponto de operação.</Usos>
+      <Usos>Linearização de sistemas: tanque, pêndulo, qualquer modelo não linear perto de um ponto de operação.</Usos>
       <RSec title="Uma variável">
         <MM>{String.raw`f(x)\approx f(a)+f'(a)(x-a)+\frac{f''(a)}{2}(x-a)^2+\dots`}</MM>
         <p>A linearização fica só com os dois primeiros termos: a reta tangente. Exemplos: <M>{'\\operatorname{sen}\\theta\\approx\\theta'}</M> perto de 0; <M>{'e^x\\approx1+x'}</M>; <M>{'\\sqrt x\\approx\\sqrt a+\\frac{x-a}{2\\sqrt a}'}</M>.</p>

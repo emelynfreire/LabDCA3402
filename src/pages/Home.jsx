@@ -1,31 +1,21 @@
 import { Link } from 'react-router-dom'
-import { course, units, topicsOf, schedule, brDate } from '../content/course.js'
+import { course, units, topicsOf } from '../content/course.js'
 import { useProgress } from '../components/progress.jsx'
 import { SimSlot } from '../sims/registry.jsx'
 
-function todayISO() {
-  const d = new Date()
-  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
-}
-
 export default function Home() {
   const { done, quiz } = useProgress()
-  const today = todayISO()
-  const nextIdx = schedule.findIndex((s) => s.date >= today)
-  const upcoming = nextIdx < 0 ? schedule.slice(-5) : schedule.slice(Math.max(0, nextIdx - 2), nextIdx + 5)
-  const nextExam = schedule.find((s) => s.exam && s.date >= today)
-  const examUnit = nextExam ? units.find((u) => u.exam?.date === nextExam.date) : null
 
   return (
     <div className="page wide">
       <section className="hero">
         <div>
-          <p className="ui muted" style={{ margin: 0 }}>{course.code} · {course.turma} · UFRN</p>
+          <p className="ui muted" style={{ margin: 0 }}>Plataforma de estudos</p>
           <h1>Modelagem e Análise Linear de Sistemas</h1>
-          <p className="lead">Teoria resumida a partir dos slides da disciplina, simulações em 3D que você pode manipular, as listas resolvidas passo a passo e um quiz por unidade.</p>
+          <p className="lead">Teoria resumida, simulações em 3D que você pode manipular, listas resolvidas passo a passo e um quiz por unidade. Conteúdo baseado na disciplina {course.code} da UFRN.</p>
           <div className="btn-row">
             <Link className="btn primary" to="/topico/introducao">Começar pela Unidade 1</Link>
-            {examUnit && <Link className="btn" to={`/unidade/${examUnit.id}`}>Revisar para a {examUnit.exam.label} ({brDate(nextExam.date)})</Link>}
+            <Link className="btn" to="/laboratorio">Abrir o laboratório</Link>
           </div>
         </div>
         <div className="hero-panel">
@@ -59,15 +49,14 @@ export default function Home() {
       <hr />
       <section className="home-bottom">
         <div>
-          <h2 style={{ marginTop: 0 }}>Cronograma da turma</h2>
-          <ul className="timeline">
-            {upcoming.map((s) => (
-              <li key={s.date + s.label} className={[s.exam ? 'exam' : '', s.date < today ? 'past' : '', schedule[nextIdx] === s ? 'now' : ''].join(' ')}>
-                <span className="date">{brDate(s.date)}</span>{s.label}
-              </li>
-            ))}
+          <h2 style={{ marginTop: 0 }}>O que tem aqui</h2>
+          <ul>
+            <li><Link to="/laboratorio">Laboratório</Link>: todas as simulações, várias em 3D, para girar e manipular.</li>
+            <li><Link to="/fluxos">Fluxogramas dos métodos</Link>: o caminho de cada tipo de questão, etapa por etapa.</li>
+            <li><Link to="/revisao">Revisão de Cálculo e Álgebra Linear</Link>: o básico necessário para os exercícios, com exemplos da disciplina.</li>
+            <li><Link to="/formulario">Formulário e tabelas</Link>: Laplace, diagramas de blocos, estabilidade, resposta transitória e espaço de estados em uma página.</li>
+            <li><Link to="/citar">Como citar e contribuir</Link>: referência pronta e o repositório no GitHub.</li>
           </ul>
-          <p className="small muted">Datas conforme o SIGAA. Confirme sempre os avisos do professor.</p>
         </div>
         <div>
           <h2 style={{ marginTop: 0 }}>Como estudar por aqui</h2>

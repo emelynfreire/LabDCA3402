@@ -11,17 +11,15 @@ const iso = (d) => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate(
 
 export const simUrl = (key) => `${course.site}#/laboratorio?sim=${key}`
 
-const capFirst = (s) => s.charAt(0).toUpperCase() + s.slice(1)
-
 /**
  * Cada formato devolve { text, html } — html só com <b>/<i> para mostrar o destaque
  * tipográfico que a norma pede (negrito na ABNT, itálico na APA).
  */
 export function referencia(formato, { sim = null, data = new Date() } = {}) {
-  const { titulo, subtitulo, ano, site } = course
+  const { titulo, ano, site } = course
   const url = sim ? simUrl(sim.key) : site
   if (formato === 'abnt') {
-    const todo = [`<b>${titulo}</b>: ${subtitulo}`, `${titulo}: ${subtitulo}`]
+    const todo = [`<b>${titulo}</b>`, titulo]
     const fim = `Natal, ${ano}. Disponível em: ${url}. Acesso em: ${acessoABNT(data)}.`
     if (sim) {
       const t = `FREIRE, Emelyn Clementino. ${sim.title}. In: FREIRE, Emelyn Clementino. `
@@ -39,17 +37,17 @@ export function referencia(formato, { sim = null, data = new Date() } = {}) {
         text: `${t}${sim.title} [Simulação interativa]. ${titulo}. ${rec}`,
       }
     }
-    const tt = `${titulo}: ${capFirst(subtitulo)}`
+    const tt = titulo
     return { html: `Freire, E. C. (${ano}). <i>${tt}</i> [Aplicação web]. ${rec}`, text: `Freire, E. C. (${ano}). ${tt} [Aplicação web]. ${rec}` }
   }
   // BibTeX (@misc funciona em qualquer estilo; biblatex aceita urldate)
-  const key = sim ? `freire${ano}${sim.key.toLowerCase()}` : `freire${ano}labdca3402`
-  const title = sim ? `${sim.title} [Simulação interativa]` : `${titulo}: ${subtitulo}`
+  const key = sim ? `freire${ano}${sim.key.toLowerCase()}` : `freire${ano}plataforma`
+  const title = sim ? `${sim.title} [Simulação interativa]` : titulo
   const lines = [
     `@misc{${key},`,
     `  author       = {Freire, Emelyn Clementino},`,
     `  title        = {{${title}}},`,
-    ...(sim ? [`  howpublished = {Simulação da plataforma ${titulo}},`] : []),
+    ...(sim ? [`  howpublished = {Simulação da ${titulo}},`] : []),
     `  year         = {${ano}},`,
     `  url          = {${url}},`,
     `  urldate      = {${iso(data)}},`,

@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "Se você usar esta plataforma ou uma de suas simulações em um trabalho, cite-a como indicado abaixo."
-title: "LabDCA3402: plataforma de estudos de Modelagem e Análise Linear de Sistemas"
+title: "Plataforma de estudos de Modelagem e Análise Linear de Sistemas"
 type: software
 authors:
   - family-names: Freire
@@ -10,10 +10,10 @@ url: "https://emelynfreire.github.io/LabDCA3402/"
 version: 1.0.0
 license: MIT
 abstract: >-
-  Plataforma de estudos aberta para a disciplina DCA3402 – Modelagem e Análise
-  Linear de Sistemas (UFRN), com resumos das aulas, listas resolvidas passo a
-  passo, quizzes, revisão de pré-requisitos, fluxogramas guiados e simulações
-  interativas em 2D e 3D.
+  Plataforma de estudos aberta de Modelagem e Análise Linear de Sistemas, com
+  conteúdo baseado na disciplina DCA3402 (UFRN): resumos dos tópicos, listas
+  resolvidas passo a passo, quizzes, revisão de pré-requisitos, fluxogramas
+  guiados e simulações interativas em 2D e 3D.
 keywords:
   - sistemas lineares
   - modelagem de sistemas dinâmicos

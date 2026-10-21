@@ -6,7 +6,7 @@
   "author": "Emelyn Clementino Freire (https://github.com/emelynfreire)",
   "repository": "github:emelynfreire/LabDCA3402",
   "type": "module",
-  "description": "Plataforma de estudos de DCA3402 – Modelagem e Análise Linear de Sistemas (UFRN)",
+  "description": "Plataforma de estudos de Modelagem e Análise Linear de Sistemas",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

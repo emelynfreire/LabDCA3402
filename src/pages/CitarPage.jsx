@@ -23,7 +23,7 @@ export default function CitarPage() {
   return (
     <div className="page">
       <header className="page-head">
-        <div className="kicker">{course.titulo} · {course.code}</div>
+        <div className="kicker">Plataforma de estudos</div>
         <h1>Como citar e contribuir</h1>
         <p className="lead">Usou a plataforma ou uma simulação num relatório, trabalho, TCC, artigo ou apresentação? Esta página mostra quando citar, como montar a referência e quais fontes foram usadas para construir o site.</p>
       </header>

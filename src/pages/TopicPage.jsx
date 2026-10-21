@@ -1,6 +1,6 @@
 import { lazy, Suspense, useMemo } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { topics, topicById, units, brDate } from '../content/course.js'
+import { topics, topicById, units } from '../content/course.js'
 import { useProgress } from '../components/progress.jsx'
 import { SlideContext, pdfUrl } from '../components/SlideRef.jsx'
 import { ReviewChips } from '../components/Review.jsx'
@@ -29,7 +29,7 @@ export default function TopicPage() {
   return (
     <div className="page">
       <header className="page-head">
-        <div className="kicker"><Link to={`/unidade/${u.id}`}>{u.title}</Link> · tópico {t.n} · aula de {brDate(t.date)}</div>
+        <div className="kicker"><Link to={`/unidade/${u.id}`}>{u.title}</Link> · tópico {t.n}</div>
         <h1>{t.title}</h1>
         {t.pdf && (
           <p className="slides-line">
@@ -38,8 +38,8 @@ export default function TopicPage() {
           </p>
         )}
       </header>
-      {u.preview && <div className="warn"><span className="tag">Material ainda não disponibilizado</span>O professor ainda vai disponibilizar o material da Unidade 3. Até lá, este texto é uma prévia baseada na bibliografia da disciplina (Lathi; apostila de Medeiros e Maitelli) e será revisto com os slides.</div>}
-      {!t.slides && !u.preview && <div className="note"><span className="tag">Sobre este tópico</span>Não há slides desta aula no material recebido. O conteúdo abaixo segue a abordagem usual da disciplina e usa exemplos dos próprios slides (como o tanque da aula 4); confira com suas anotações.</div>}
+      {u.preview && <div className="warn"><span className="tag">Conteúdo prévio</span>Os slides da Unidade 3 ainda não foram incorporados à plataforma. Por enquanto, este texto é uma prévia baseada na bibliografia da disciplina (Lathi; apostila de Medeiros e Maitelli) e será revisto com os slides.</div>}
+      {!t.slides && !u.preview && <div className="note"><span className="tag">Sobre este tópico</span>Não há slides deste tópico no material disponível. O conteúdo abaixo segue a abordagem usual da disciplina e usa exemplos dos próprios slides (como o tanque da aula 4); confira com suas anotações.</div>}
       {TOPIC_PREREQS[t.id] && <ReviewChips keys={TOPIC_PREREQS[t.id]} label="Pré-requisitos (abra se precisar relembrar):" />}
       <SlideContext.Provider value={t.pdf || null}>
         <Suspense fallback={<div className="loading">Carregando conteúdo…</div>}>

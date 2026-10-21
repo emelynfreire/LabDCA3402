@@ -1,6 +1,6 @@
 import { NavLink, Link, useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { course, units, topicsOf, brDate } from '../content/course.js'
+import { course, units, topicsOf } from '../content/course.js'
 import { useProgress } from './progress.jsx'
 import { setTheme } from './useTheme.js'
 import { Seg } from './Controls.jsx'
@@ -20,14 +20,14 @@ function Nav({ onNavigate }) {
   return (
     <nav aria-label="Conteúdo da disciplina" onClick={onNavigate}>
       <Link to="/" className="brand">
-        <span className="brand-code">{course.code}</span>
-        <span className="brand-name">{course.name}<br />{course.turma}</span>
+        <span className="brand-kicker">Plataforma de estudos</span>
+        <span className="brand-code">{course.name}</span>
       </Link>
       {units.map((u) => (
         <div key={u.id}>
           <div className="nav-unit">
             <NavLink to={`/unidade/${u.id}`} style={{ color: 'inherit', textDecoration: 'none' }}>{u.title}</NavLink>
-            {u.exam ? <span className="when">prova {brDate(u.exam.date)}</span> : u.preview ? <span className="when">prévia</span> : null}
+            {u.preview ? <span className="when">prévia</span> : null}
           </div>
           <ul className="nav-list">
             {topicsOf(u.id).map((t) => (
@@ -65,7 +65,7 @@ export default function Layout({ children }) {
   return (
     <div className="app">
       <header className="topbar">
-        <Link to="/" style={{ textDecoration: 'none' }}><span className="brand-code">{course.code}</span></Link>
+        <Link to="/" style={{ textDecoration: 'none' }} className="topbar-brand"><span className="brand-kicker">Plataforma de estudos</span><span className="brand-code">{course.name}</span></Link>
         <button className="btn small" aria-expanded={open} onClick={() => setOpen((o) => !o)}>{open ? 'Fechar' : 'Conteúdo'}</button>
       </header>
       {open && <div className="scrim" onClick={() => setOpen(false)} />}

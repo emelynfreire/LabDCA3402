@@ -1,6 +1,6 @@
-# LabDCA3402 · Plataforma de estudos de Modelagem e Análise Linear de Sistemas
+# Plataforma de estudos de Modelagem e Análise Linear de Sistemas
 
-Plataforma de estudos para a disciplina **DCA3402 – Modelagem e Análise Linear de Sistemas** (turma T02, 2026.2) do Departamento de Engenharia de Computação e Automação da UFRN, com base no material do Prof. Anderson Luiz de Oliveira Cavalcanti.
+Plataforma de estudos independente e aberta de **Modelagem e Análise Linear de Sistemas**. O conteúdo tem como base a disciplina DCA3402 do Departamento de Engenharia de Computação e Automação da UFRN e usa os slides e as listas do Prof. Anderson Luiz de Oliveira Cavalcanti, com a autorização dele.
 
 **Iniciativa de [Emelyn Clementino Freire](https://github.com/emelynfreire).**
 
@@ -13,7 +13,7 @@ A plataforma foi criada para contribuir para reduzir os índices de reprovação
 
 ## O que tem
 
-- **19 tópicos** organizados pelas 3 unidades e pelo cronograma do SIGAA, com teoria resumida dos slides.
+- **19 tópicos** organizados em 3 unidades, com teoria resumida dos slides.
 - **28 simulações interativas**, várias em 3D (Three.js):
   circuito RC/RLC com corrente fluindo, massa–mola–amortecedor, convolução como superfície 3D, a exponencial complexa e^{st} como espiral, superfície |G(s)| sobre o plano s, resposta de 2ª ordem y(t, ξ) em 3D, trajetórias no espaço de estados, subespaço controlável, tanque não linear × linearizado, sistema torcional e motor CC.
 - Ferramentas: plano s com polos e zeros arrastáveis, **resolvedor de EDO por Laplace passo a passo**, tabela de **Routh–Hurwitz** com os casos especiais (ε e linha nula), simplificação de diagrama de blocos etapa por etapa.
@@ -25,7 +25,7 @@ A plataforma foi criada para contribuir para reduzir os índices de reprovação
 - Simulações de fundamentos: decomposição da resposta nos modos de cada polo (com camadas 3D), Routh célula por célula, plano complexo com resíduo calculado pela geometria dos polos, raízes de s² + bs + c ligadas ao amortecimento, reta e plano tangente (Taylor/linearização) e matriz como transformação em 2D e 3D (determinante, posto, autovetores).
 - Formulário, progresso salvo no navegador, tema claro/escuro, layout para celular.
 
-A Unidade 3 está marcada como **prévia**: o professor ainda vai disponibilizar o material, e até lá o texto segue a bibliografia da disciplina.
+A Unidade 3 está marcada como **prévia**: os slides dessa unidade ainda não foram incorporados, e por enquanto o texto segue a bibliografia da disciplina.
 
 ## Rodar no computador
 
@@ -63,7 +63,7 @@ O projeto usa `base: './'` e rotas com `#`, então funciona com qualquer nome de
 
 ```
 src/
-  content/        conteúdo: course.js (cronograma, PDFs de cada aula, autoria e links), topics/*.jsx,
+  content/        conteúdo: course.js (unidades, tópicos, PDFs, autoria e links), topics/*.jsx,
                   lista1/2.jsx, quiz1/2/3.jsx, flows.jsx (fluxogramas), review/ (revisão de pré-requisitos)
   sims/           simulações (registry.jsx lista todas; carregadas sob demanda)
   components/     Plot (gráficos SVG), SPlane, Exercise, Quiz, Tex (KaTeX), Scene3D
@@ -99,11 +99,11 @@ Se usar a plataforma ou uma simulação num relatório, trabalho, TCC, artigo ou
 
 ABNT:
 
-> FREIRE, Emelyn Clementino. **LabDCA3402**: plataforma de estudos de Modelagem e Análise Linear de Sistemas. Natal, 2026. Disponível em: https://emelynfreire.github.io/LabDCA3402/. Acesso em: [dia mês ano].
+> FREIRE, Emelyn Clementino. **Plataforma de estudos de Modelagem e Análise Linear de Sistemas**. Natal, 2026. Disponível em: https://emelynfreire.github.io/LabDCA3402/. Acesso em: [dia mês ano].
 
 APA:
 
-> Freire, E. C. (2026). *LabDCA3402: Plataforma de estudos de Modelagem e Análise Linear de Sistemas* [Aplicação web]. https://emelynfreire.github.io/LabDCA3402/
+> Freire, E. C. (2026). *Plataforma de estudos de Modelagem e Análise Linear de Sistemas* [Aplicação web]. https://emelynfreire.github.io/LabDCA3402/
 
 Fontes usadas na construção: slides e listas do Prof. Anderson Luiz de Oliveira Cavalcanti (publicados com autorização), a bibliografia da disciplina (abaixo) e as bibliotecas livres React, React Router, Three.js, React Three Fiber/Drei, KaTeX e Vite (licença MIT), além das fontes Archivo e Source Serif 4 (SIL Open Font License).
 
