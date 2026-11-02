@@ -26,16 +26,12 @@ export const units = [
     title: 'Unidade 1',
     name: 'Representação de sistemas lineares',
     summary: 'Classificação, convolução, EDOs, Transformada de Laplace e funções de transferência.',
-    lista: 1,
-    listaPdf: 'lista-1.pdf',
   },
   {
     id: 2,
     title: 'Unidade 2',
     name: 'Análise de sistemas lineares',
     summary: 'Linearização, diagramas de blocos, estabilidade, regime transitório, espaço de estados, controlabilidade e observabilidade.',
-    lista: 2,
-    listaPdf: 'lista-2.pdf',
   },
   {
     id: 3,
@@ -45,6 +41,14 @@ export const units = [
     preview: true,
   },
 ]
+
+// Listas de exercícios do professor. gab = página do PDF em que começa o gabarito oficial.
+export const LISTAS = {
+  1: { unit: 1, file: 'lista-1.pdf', gab: 5, title: 'Primeira Unidade' },
+  2: { unit: 2, file: 'lista-2.pdf', gab: 4, title: 'Análise em Regime Transitório' },
+  3: { unit: 2, file: 'lista-3.pdf', gab: 3, title: 'Variáveis de Estado, Controlabilidade e Observabilidade' },
+}
+export const listasOf = (unit) => Object.entries(LISTAS).filter(([, l]) => l.unit === unit).map(([n, l]) => ({ n: Number(n), ...l }))
 
 // slides: nome do arquivo de slides do professor correspondente (quando existe)
 export const topics = [

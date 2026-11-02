@@ -1,5 +1,5 @@
 import { Link, useParams } from 'react-router-dom'
-import { units, topicsOf } from '../content/course.js'
+import { units, topicsOf, listasOf } from '../content/course.js'
 import { useProgress } from '../components/progress.jsx'
 import { SIMS } from '../sims/registry.jsx'
 import { pdfUrl } from '../components/SlideRef.jsx'
@@ -37,14 +37,14 @@ export default function UnitPage() {
           <h2>Material do professor</h2>
           <ul>
             {ts.filter((t) => t.pdf).map((t) => <li key={t.id}><a href={pdfUrl(t.pdf)} target="_blank" rel="noopener noreferrer">Slides {t.slides}</a> <span className="muted small">({t.pages} p.)</span></li>)}
-            {u.listaPdf && <li><a href={pdfUrl(u.listaPdf)} target="_blank" rel="noopener noreferrer">Lista de exercícios {u.lista} (enunciados e gabarito)</a></li>}
+            {listasOf(u.id).map((l) => <li key={l.n}><a href={pdfUrl(l.file)} target="_blank" rel="noopener noreferrer">Lista de exercícios {l.n} – {l.title} (enunciados e gabarito)</a></li>)}
           </ul>
           <p className="small muted">Disponibilizado com autorização do professor.</p>
         </>
       )}
       <h2>Praticar</h2>
       <ul>
-        {u.lista && <li><Link to={`/lista/${u.lista}`}>Lista {u.lista} com resolução passo a passo</Link></li>}
+        {listasOf(u.id).map((l) => <li key={l.n}><Link to={`/lista/${l.n}`}>Lista {l.n} ({l.title.toLowerCase()}) com resolução passo a passo</Link></li>)}
         <li><Link to={`/quiz/${u.id}`}>Quiz da {u.title.toLowerCase()}</Link>{quiz[u.id] ? ` — melhor resultado: ${quiz[u.id].best}/${quiz[u.id].total}` : ''}</li>
       </ul>
     </div>

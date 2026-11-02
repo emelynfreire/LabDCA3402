@@ -17,7 +17,7 @@ A plataforma foi criada para contribuir para reduzir os índices de reprovação
 - **28 simulações interativas**, várias em 3D (Three.js):
   circuito RC/RLC com corrente fluindo, massa–mola–amortecedor, convolução como superfície 3D, a exponencial complexa e^{st} como espiral, superfície |G(s)| sobre o plano s, resposta de 2ª ordem y(t, ξ) em 3D, trajetórias no espaço de estados, subespaço controlável, tanque não linear × linearizado, sistema torcional e motor CC.
 - Ferramentas: plano s com polos e zeros arrastáveis, **resolvedor de EDO por Laplace passo a passo**, tabela de **Routh–Hurwitz** com os casos especiais (ε e linha nula), simplificação de diagrama de blocos etapa por etapa.
-- **Listas 1 e 2 resolvidas** com solução revelada um passo por vez (respostas conferidas por cálculo simbólico).
+- **Listas 1, 2 e 3 resolvidas** com solução revelada um passo por vez (respostas conferidas por cálculo simbólico). A Lista 3 cobre variáveis de estado, controlabilidade e observabilidade.
 - **Slides e listas do professor em PDF** (disponibilizados com autorização dele), com cada seção citando a página correspondente — o link “slides, p. N” abre o PDF na página certa.
 - **Quiz por unidade**: ao errar, aparece a resposta correta com a explicação; no fim, a revisão das questões erradas e os tópicos a estudar.
 - **Revisão de pré-requisitos** (16 cartões de Álgebra, Cálculo, números complexos e Álgebra Linear), com exemplos tirados das aulas e listas, passo a passo e teste rápido. Cada exercício tem botões "Revisar o básico" que abrem a revisão certa ali mesmo, e cada tópico mostra seus pré-requisitos no topo.
@@ -40,64 +40,31 @@ Abra o endereço mostrado no terminal (normalmente http://localhost:5173).
 
 Para gerar a versão final: `npm run build` (o resultado fica em `dist/`).
 
-## Como contribuir
+## Publicar no GitHub Pages
 
-Contribuições são bem-vindas! Você pode ajudar a melhorar o projeto reportando problemas, sugerindo funcionalidades ou implementando melhorias.
-
-- **Encontrou um erro?** Abra uma [issue](https://github.com/emelynfreire/LabDCA3402/issues) dizendo a página, o que está errado e, se possível, a página do slide ou da lista.
-- **Tem uma ideia** de simulação, exercício ou revisão? Abra uma issue descrevendo a ideia.
-- **Quer mexer no código?** Faça um *fork*, crie as alterações (veja "Como adicionar conteúdo") e envie um *pull request*.
-
-### Regras para contribuir
-
-1. **Explore o projeto:** consulte o código e a documentação antes de propor alterações.
-2. **Identifique uma tarefa:** verifique as *Issues* existentes ou abra uma nova para discutir sua ideia antes de começar.
-3. **Crie uma branch:** não faça alterações diretamente na branch `main`. Utilize uma branch com um nome descritivo.
-
+1. Envie o projeto para o repositório [`emelynfreire/LabDCA3402`](https://github.com/emelynfreire/LabDCA3402):
    ```bash
-   git checkout main
-   git pull origin main
-   git checkout -b feature/nova-funcionalidade
-   ```
-
-4. **Siga o padrão do projeto:** mantenha a organização dos arquivos, o estilo do código e a compatibilidade com as funcionalidades existentes.
-5. **Teste suas alterações:** verifique se o projeto continua funcionando corretamente antes de enviar sua contribuição.
-6. **Faça commits descritivos:** utilize mensagens claras que indiquem o que foi alterado.
-
-   ```bash
+   git init
    git add .
-   git commit -m "feat: adiciona nova funcionalidade"
+   git commit -m "Plataforma DCA3402"
+   git branch -M main
+   git remote add origin https://github.com/emelynfreire/LabDCA3402.git
+   git push -u origin main
    ```
-
-7. **Envie sua branch para o GitHub:**
-
-   ```bash
-   git push origin feature/nova-funcionalidade
-   ```
-
-8. **Abra um Pull Request (PR):** descreva as alterações realizadas, sua finalidade e, se necessário, inclua capturas de tela. Aguarde a revisão antes de integrar as mudanças à branch `main`.
-
-### Diretrizes gerais
-
-- Mantenha o código legível, organizado e documentado quando necessário.
-- Evite alterações que não estejam relacionadas à proposta do Pull Request.
-- Não envie senhas, tokens, chaves de API ou outros dados sensíveis.
-- Respeite os direitos autorais e as licenças dos materiais utilizados.
-- Seja respeitoso e colaborativo nas discussões e revisões.
-
-Todas as contribuições estarão sujeitas à revisão e poderão ser solicitadas alterações antes da aprovação.
-
+   Antes do primeiro push, crie a pasta `.github/workflows/` e mova para dentro dela o arquivo `deploy.yml` que está na raiz do projeto (ele precisa ficar em `.github/workflows/deploy.yml`).
+2. No repositório: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+3. O workflow `.github/workflows/deploy.yml` compila e publica a cada `push` na `main`. Em 1–2 minutos o site fica em https://emelynfreire.github.io/LabDCA3402/.
 
 O projeto usa `base: './'` e rotas com `#`, então funciona com qualquer nome de repositório.
 
-> **Material do professor:** os PDFs publicados ficam em `public/material/` (com nomes curtos, usados nos links de página). 
+> **Material do professor:** os PDFs publicados ficam em `public/material/` (com nomes curtos, usados nos links de página). A pasta `Material/` original continua no `.gitignore` só para não duplicar os arquivos no repositório; o arquivo `unidades atuais.pdf` (página do SIGAA com o link do grupo de WhatsApp) não é publicado.
 
 ## Estrutura
 
 ```
 src/
   content/        conteúdo: course.js (unidades, tópicos, PDFs, autoria e links), topics/*.jsx,
-                  lista1/2.jsx, quiz1/2/3.jsx, flows.jsx (fluxogramas), review/ (revisão de pré-requisitos)
+                  lista1/2/3.jsx, quiz1/2/3.jsx, flows.jsx (fluxogramas), review/ (revisão de pré-requisitos)
   sims/           simulações (registry.jsx lista todas; carregadas sob demanda)
   components/     Plot (gráficos SVG), SPlane, Exercise, Quiz, Tex (KaTeX), Scene3D
   lib/            numérico: polinômios, raízes, frações parciais, Routh, espaço de estados;
@@ -111,6 +78,7 @@ CITATION.cff      dados de citação lidos pelo GitHub
 
 - **Novo tópico:** acrescente uma entrada em `src/content/course.js` e crie `src/content/topics/<id>.jsx`.
 - **Nova questão de lista:** use o componente `<Exercise>` com `steps` (passos) e `answer`.
+- **Nova lista:** copie o PDF para `public/material/`, registre-a em `LISTAS` (`course.js`, com a unidade e a página do gabarito), crie `src/content/listaN.jsx` e acrescente o import em `src/pages/ListaPage.jsx`. Menu, página da unidade e página inicial passam a mostrá-la sozinhos; uma unidade pode ter mais de uma lista.
 - **Nova questão de quiz:** acrescente um objeto `{ q, options, correct, explain, topic }` no arquivo do quiz.
 - **Simulação dentro de um tópico:** `<SimSlot name="..." />` com um nome de `src/sims/registry.jsx`.
 - **Botões de revisão num exercício:** `<Exercise ... review={['complexos', 'fracoes']}>` (chaves em `src/content/review/index.js`).
@@ -119,6 +87,12 @@ CITATION.cff      dados de citação lidos pelo GitHub
 - **Citar uma página dos slides:** `<Slide p={12} />` (PDF da aula atual) ou `<Slide file="lista-1.pdf" p={3} />`. Quando chegarem os slides da Unidade 3, copie os PDFs para `public/material/` e preencha `pdf` e `pages` no tópico em `course.js`.
 
 Fórmulas usam KaTeX: `<M>{String.raw\`G(s)=\frac{1}{s+1}\`}</M>` (inline) e `<MM>…</MM>` (destaque).
+
+## Como contribuir
+
+- **Encontrou um erro?** Abra uma [issue](https://github.com/emelynfreire/LabDCA3402/issues) dizendo a página, o que está errado e, se possível, a página do slide ou da lista.
+- **Tem uma ideia** de simulação, exercício ou revisão? Abra uma issue descrevendo a ideia.
+- **Quer mexer no código?** Faça um *fork*, crie as alterações (veja "Como adicionar conteúdo") e envie um *pull request*.
 
 ## Como citar
 

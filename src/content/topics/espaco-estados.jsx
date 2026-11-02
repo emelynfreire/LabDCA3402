@@ -81,6 +81,7 @@ export default function EspacoEstados() {
         answer={<p>As três realizações têm a mesma função de transferência e os mesmos autovalores (−1, −1, −2), embora as matrizes sejam diferentes.</p>}>
         <p>Encontre as realizações controlável, observável e de Jordan de <M>{String.raw`G(s)=\frac{0{,}5s^3+3s^2+2{,}5s+4}{s^3+4s^2+5s+2}`}</M>.</p>
       </Exercise>
+      <Callout kind="tip" tag="Pratique">As questões 1 a 5 e 14 a 17 da <a href="#/lista/3">Lista 3 resolvida</a> são sobre esta aula: realizações canônicas, função de transferência a partir do modelo de estado, matriz de transição e resposta no tempo.</Callout>
     </>
   )
 }

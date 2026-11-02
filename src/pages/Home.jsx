@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { course, units, topicsOf } from '../content/course.js'
+import { course, units, topicsOf, listasOf } from '../content/course.js'
 import { useProgress } from '../components/progress.jsx'
 import { SimSlot } from '../sims/registry.jsx'
 
@@ -37,7 +37,7 @@ export default function Home() {
                 {ts.map((t) => <li key={t.id}><Link to={`/topico/${t.id}`}>{t.title}</Link>{done[t.id] && <span className="done" style={{ color: 'var(--good)' }}> ✓</span>}</li>)}
               </ol>
               <div className="links">
-                {u.lista && <Link to={`/lista/${u.lista}`}>Lista {u.lista} resolvida</Link>}
+                {listasOf(u.id).map((l) => <Link key={l.n} to={`/lista/${l.n}`}>Lista {l.n} resolvida</Link>)}
                 <Link to={`/quiz/${u.id}`}>Quiz</Link>
                 {u.preview && <span className="muted">conteúdo prévio</span>}
               </div>

@@ -48,6 +48,7 @@ export default function Controlabilidade() {
         <p>Verifique se o sistema <M>{String.raw`\dot{\mathbf x}=\begin{bmatrix}0&1&0\\0&0&1\\-6&-11&-6\end{bmatrix}\mathbf x+\begin{bmatrix}0\\0\\1\end{bmatrix}u,\ y=\begin{bmatrix}1&0&0\end{bmatrix}\mathbf x`}</M> é controlável e observável, pelos critérios de posto e PBH.</p>
       </Exercise>
       <Callout kind="tip" tag="Exercício 1 dos slides">Levante os modelos de estado dos circuitos desta aula e teste-os no simulador de controlabilidade e observabilidade acima.</Callout>
+      <Callout kind="tip" tag="Pratique">As questões 6 a 13 da <a href="#/lista/3">Lista 3 resolvida</a> treinam a matriz de controlabilidade, a de observabilidade e o teste PBH, inclusive com parâmetros e com duas entradas.</Callout>
     </>
   )
 }

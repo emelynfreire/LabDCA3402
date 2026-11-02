@@ -1,6 +1,6 @@
 import { NavLink, Link, useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { course, units, topicsOf } from '../content/course.js'
+import { course, units, topicsOf, listasOf } from '../content/course.js'
 import { useProgress } from './progress.jsx'
 import { setTheme } from './useTheme.js'
 import { Seg } from './Controls.jsx'
@@ -39,9 +39,9 @@ function Nav({ onNavigate }) {
                 </NavLink>
               </li>
             ))}
-            {u.lista && (
-              <li><NavLink to={`/lista/${u.lista}`}><span className="idx">L{u.lista}</span><span>Lista {u.lista} resolvida</span><span /></NavLink></li>
-            )}
+            {listasOf(u.id).map((l) => (
+              <li key={l.n}><NavLink to={`/lista/${l.n}`}><span className="idx">L{l.n}</span><span>Lista {l.n} resolvida</span><span /></NavLink></li>
+            ))}
             <li><NavLink to={`/quiz/${u.id}`}><span className="idx">Q</span><span>Quiz da {u.title.toLowerCase()}</span><span /></NavLink></li>
           </ul>
         </div>
@@ -72,7 +72,7 @@ export default function Layout({ children }) {
       <aside className={'sidebar' + (open ? ' open' : '')}>
         <Nav />
         <ThemeSwitch />
-        <p className="sidebar-credit">Dev: <a href={course.autoraGithub} target="_blank" rel="noreferrer">Emelyn</a> · <a href={course.repo} target="_blank" rel="noreferrer">contribua no GitHub</a></p>
+        <p className="sidebar-credit">Uma iniciativa de <a href={course.autoraGithub} target="_blank" rel="noreferrer">{course.autora}</a> · <a href={course.repo} target="_blank" rel="noreferrer">contribua no GitHub</a></p>
       </aside>
       <main className="main" id="conteudo">{children}</main>
     </div>
